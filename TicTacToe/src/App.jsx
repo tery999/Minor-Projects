@@ -24,23 +24,24 @@ function App() {
   }
 
   const clickFunction = (boxNumber) => {
-    debugger;
-    const curArr = [...arr];
-    if (curArr[boxNumber].length !== 0) {
-      return;
+    if (gameFinished === false) {
+      const curArr = [...arr];
+      if (curArr[boxNumber].length !== 0) {
+        return;
+      }
+      if (player === "X") {
+        curArr[boxNumber] = "X";
+        setPlayer("O")
+      } else {
+        curArr[boxNumber] = "O";
+        setPlayer("X")
+      }
+      turns.current++;
+      console.log("TURNS", turns)
+      setArr(curArr);
     }
-    if (player === "X") {
-      curArr[boxNumber] = "X";
-      setPlayer("O")
-    } else {
-      curArr[boxNumber] = "O";
-      setPlayer("X")
-    }
-    turns.current++;
-    console.log("TURNS", turns)
-    setArr(curArr);
-  }
 
+  }
 
   const resetGame = () => {
     setArr(Array(9).fill(""));
