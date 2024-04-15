@@ -14,7 +14,6 @@ function App() {
   }
 
   if (turns.current >= 5 && gameFinished === false) {
-    debugger;
     const previusMoveSymbol = player === "O" ? "X" : "O";
     const results = combinations(arr, previusMoveSymbol);
     if (results === true) {
@@ -68,15 +67,20 @@ function App() {
           <div onClick={() => clickFunction(7)} className={styles.box}>{arr[7]}</div>
           <div onClick={() => clickFunction(8)} className={styles.box}>{arr[8]}</div>
         </div>
-      </div>
-      {gameFinished &&
-        <h2>Game Finished</h2>
-      }
-      {playerWon &&
-        <h2>Player won</h2>
-      }
-      <div>
-        <button onClick={resetGame}>Reset</button>
+        <div className={styles.finalDiv}>
+          {gameFinished &&
+            <h2>Game Finished</h2>
+          }
+          {playerWon && player==="O" &&
+            <h2>Player X won</h2>
+          }
+          {playerWon && player==="X" &&
+            <h2>Player O won</h2>
+          }
+        </div>
+        <div>
+          <button onClick={resetGame}>Reset</button>
+        </div>
       </div>
     </div>
   )

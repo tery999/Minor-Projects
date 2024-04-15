@@ -1,3 +1,11 @@
+.container {
+    margin-top: 35px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
 .GameHolder {
     display: flex;
     justify-content: center;
@@ -28,9 +36,15 @@
     background-color: rgb(171, 226, 241);
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.finalDiv {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-direction: column !important;
+    gap: 5px;
+}
+
+.finalDiv > h2 {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
