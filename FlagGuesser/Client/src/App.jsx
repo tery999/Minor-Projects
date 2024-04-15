@@ -7,23 +7,27 @@ import { getAllFlags } from './Services';
 function App() {
   const [flagsArr, setFlagsArr] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [currentFlag, setCurrentFlag] = useState();
 
   useEffect( () => {
-    getAllFlags().then(results => setFlagsArr(results));
-    setLoaded(true);
+    const getFlags = async () => {
+      debugger;
+      const flags = await getAllFlags();
+      const randomIndex = Math.floor(Math.random() * flags.length);
+      const getOneFlag = flags[randomIndex];
+      flags.splice(randomIndex, 1)
+      setCurrentFlag(getOneFlag);
+      setFlagsArr(flags);
+      setLoaded(true);
+    }
+    getFlags();
   }, [])
+
+
   return (
     <div className='Container'>
-      {loaded === true &&
-        <>
-          {
-            flagsArr.map((flag) => {
-              return <div key={flag._id}>
-                {flag.name}
-              </div>
-            })
-          }
-        </>
+      {loaded && currentFlag &&
+        <div className='flagContainer'> {currentFlag.name}</div>
       }
     </div>
   )
