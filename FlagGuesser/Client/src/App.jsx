@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import * as styles from "./App.module.css"
@@ -10,16 +10,19 @@ function App() {
   const [choices, setChoices] = useState([]);
   const [currentFlag, setCurrentFlag] = useState({});
   const [loaded, setLoaded] = useState(false);
+  const correntAsnwers = useRef(0);
+  const totalAnswers = useRef(0);
 
 
-  useEffect( () => {
+  useEffect(() => {
     const getFlags = async () => {
       const flags = await getAllFlags();
       const shuffling = flags.sort(() => Math.random() - 0.5);
       const choices = [...shuffling];
       setChoices(choices);
+      totalAnswers.current = flags.length;
 
-      const currentFlg = shuffling.splice(0,1)[0];
+      const currentFlg = shuffling.splice(0, 1)[0];
       setFlagsArrShuffled(shuffling);
       setCurrentFlag(currentFlg);
       setLoaded(true);
@@ -29,23 +32,30 @@ function App() {
 
   const fourChoices = [];
   fourChoices.push(currentFlag);
-  const choicesWithoutCurrent = choices.filter( (flagObj)=> {
+  const choicesWithoutCurrent = choices.filter((flagObj) => {
     return flagObj.name !== currentFlag.name;
   })
   const choicesWithoutCurrentShuffled = choicesWithoutCurrent.sort(() => Math.random() - 0.5);
-  const threeLeft = choicesWithoutCurrentShuffled.slice(0,3);
+  const threeLeft = choicesWithoutCurrentShuffled.slice(0, 3);
   fourChoices.push(...threeLeft);
   const fourChoicesShuffled = fourChoices.sort(() => Math.random() - 0.5);
 
-  console.log("THIS IS CURRENT FLAG", currentFlag)
+  const choiceClickFunction = (name) => {
+    if (name === currentFlag.name) {
+      correntAsnwers.current ++;
+      console.log(correntAsnwers, "Corrent answesr");
+    }
+  }
   return (
     <div className={styles.container}>
       {loaded && currentFlag &&
         <div className='flagContainer'> <img src={currentFlag.flagURL} alt="" /></div>
       }
-      {fourChoicesShuffled.map ((oneOption=> {
-        return <div key={oneOption._id}> {oneOption.name}</div>
-      })) }
+      <div className={styles.Options}>
+        {fourChoicesShuffled.map((oneOption => {
+          return <button key={oneOption._id} onClick={()=> choiceClickFunction(oneOption.name)}> {oneOption.name}</button>
+        }))}
+      </div>
     </div>
   )
 }
