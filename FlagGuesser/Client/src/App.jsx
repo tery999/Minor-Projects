@@ -10,7 +10,7 @@ function App() {
   const [choices, setChoices] = useState([]);
   const [currentFlag, setCurrentFlag] = useState({});
   const [loaded, setLoaded] = useState(false);
-  const correntAsnwers = useRef(0);
+  const correctAsnwers = useRef(0);
   const totalAnswers = useRef(0);
 
 
@@ -33,7 +33,7 @@ function App() {
   const fourChoices = [];
   fourChoices.push(currentFlag);
   const choicesWithoutCurrent = choices.filter((flagObj) => {
-    return flagObj.name !== currentFlag.name;
+    return flagObj?.name !== currentFlag?.name;
   })
   const choicesWithoutCurrentShuffled = choicesWithoutCurrent.sort(() => Math.random() - 0.5);
   const threeLeft = choicesWithoutCurrentShuffled.slice(0, 3);
@@ -42,20 +42,32 @@ function App() {
 
   const choiceClickFunction = (name) => {
     if (name === currentFlag.name) {
-      correntAsnwers.current ++;
-      console.log(correntAsnwers, "Corrent answesr");
+      correctAsnwers.current++;
     }
+    debugger;
+    const newCurFlag = flagsArrShuffled.splice(0, 1)[0];
+    setCurrentFlag(newCurFlag);
   }
   return (
     <div className={styles.container}>
+      <div> {correctAsnwers.current}/{totalAnswers.current}</div>
       {loaded && currentFlag &&
-        <div className='flagContainer'> <img src={currentFlag.flagURL} alt="" /></div>
+        <>
+          <div className={styles.flagContainer}> <img className={styles.flagImg} src={currentFlag.flagURL} alt="" /></div>
+          <div className={styles.Options}>
+            {fourChoicesShuffled.map((oneOption => {
+              return <button key={oneOption._id} onClick={() => choiceClickFunction(oneOption.name)}> {oneOption.name}</button>
+            }))}
+
+          </div>
+        </>
       }
-      <div className={styles.Options}>
-        {fourChoicesShuffled.map((oneOption => {
-          return <button key={oneOption._id} onClick={()=> choiceClickFunction(oneOption.name)}> {oneOption.name}</button>
-        }))}
-      </div>
+      {!currentFlag && !correctAsnwers.current === totalAnswers.current &&
+        <div>Your score is {correctAsnwers.current} out of {totalAnswers.current}</div>
+      }
+      {!currentFlag && correctAsnwers.current === totalAnswers.current &&
+        <div>Perfect score</div>
+      }
     </div>
   )
 }

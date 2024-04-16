@@ -6,6 +6,39 @@
 }
 
 .Options {
+    margin-top: 15px;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     gap: 15px;
+}
+
+.Options > button {
+    background-color: rgb(177, 233, 247);
+    border: 2px solid rgb(169, 169, 254);
+    border-radius: 8px;
+    cursor: pointer;
+    width: 150px;
+    height: 35px;
+    transition: 0.2s;
+    font-size: 15px;
+}
+
+.Options > button:hover {
+    background-color: rgb(133, 206, 224);
+    transition: 0.2s;
+}
+
+.flagContainer {
+    display: flex;
+    justify-content: center;
+    height: 300px;
+    width: 500px;
+}
+
+.flagImg {
+    object-fit: fill;
+    height: 300px;
+    width: 500px;
 }
