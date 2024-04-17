@@ -12,6 +12,7 @@ function App() {
   const [loaded, setLoaded] = useState(false);
   const correctAsnwers = useRef(0);
   const totalAnswers = useRef(0);
+  const currentTurn = useRef(1);
 
 
   useEffect(() => {
@@ -29,7 +30,6 @@ function App() {
     }
     getFlags();
   }, [])
-
   const fourChoices = [];
   fourChoices.push(currentFlag);
   const choicesWithoutCurrent = choices.filter((flagObj) => {
@@ -46,14 +46,23 @@ function App() {
     }
     debugger;
     const newCurFlag = flagsArrShuffled.splice(0, 1)[0];
+    currentTurn.current++;
     setCurrentFlag(newCurFlag);
   }
+
+  const ResetFunction = () => {
+    window.location.reload();
+  }
+
+  const currentFlagImage = currentFlag?.name;
   return (
     <div className={styles.container}>
-      <div> {correctAsnwers.current}/{totalAnswers.current}</div>
+      {currentTurn.current <= totalAnswers.current &&
+        <div> {currentTurn.current}/{totalAnswers.current}</div>
+      }
       {loaded && currentFlag &&
         <>
-          <div className={styles.flagContainer}> <img className={styles.flagImg} src={currentFlag.flagURL} alt="" /></div>
+          <div className={styles.flagContainer}> <img className={[styles.flagImg, styles[currentFlagImage]].join(' ')} src={currentFlag.flagURL} alt="" /></div>
           <div className={styles.Options}>
             {fourChoicesShuffled.map((oneOption => {
               return <button key={oneOption._id} onClick={() => choiceClickFunction(oneOption.name)}> {oneOption.name}</button>
@@ -62,11 +71,15 @@ function App() {
           </div>
         </>
       }
-      {!currentFlag && !correctAsnwers.current === totalAnswers.current &&
-        <div>Your score is {correctAsnwers.current} out of {totalAnswers.current}</div>
+      {!currentFlag && correctAsnwers.current !== totalAnswers.current &&
+        <div className={styles.FinalScore}>Your score is {correctAsnwers.current} out of {totalAnswers.current}</div>
       }
       {!currentFlag && correctAsnwers.current === totalAnswers.current &&
-        <div>Perfect score</div>
+        <div className={styles.FinalScore}>Perfect score</div>
+      }
+
+      {!currentFlag &&
+        <button className={styles.tryAgain} onClick={ResetFunction}> Try again </button>
       }
     </div>
   )
