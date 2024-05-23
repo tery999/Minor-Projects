@@ -5,6 +5,7 @@ import './App.css'
 
 function App() {
   const [screenValue, setScreenValue] = useState("");
+  const [theme, setTheme] = useState("light");
 
   const buttonNumberClickFunc =(e) => {
     const value = e.currentTarget.value;
@@ -25,13 +26,13 @@ function App() {
   }
 
   return (
-    <div className='container'>
-      <div className='screen'>
+    <div className={`container ${theme}`}>
+      <div className={`screen ${theme}`}>
         {screenValue}
       </div>
       <div className='keyboard'>
-        <div className='numbers'>
-          <div className='first row'>
+        <div className={`numbers ${theme}`}>
+          <div className='first row '>
             <button value="1" onClick={buttonNumberClickFunc}>1</button>
             <button value="2" onClick={buttonNumberClickFunc}>2</button>
             <button value="3" onClick={buttonNumberClickFunc}>3</button>
@@ -49,10 +50,10 @@ function App() {
           <div className='third row'>
             <button value="0" onClick={buttonNumberClickFunc}>0</button>
             <button value="." onClick={buttonNumberClickFunc}>.</button>
-            <button className='delete' onClick={clearClickFunc}>CE</button>
+            <button className={`delete ${theme}`} onClick={clearClickFunc}>CE</button>
           </div>
         </div>
-        <div className='operators'>
+        <div className={`operators ${theme}`}>
           <button value="+" onClick={buttonNumberClickFunc}>+</button>
           <button value="-" onClick={buttonNumberClickFunc}>-</button>
           <button value="*" onClick={buttonNumberClickFunc}>*</button>
@@ -60,7 +61,9 @@ function App() {
         </div>
       </div>
       <div className='calculate'>
-        <button className='calculateBtn' onClick={calculateClickFunc}>Calculate</button>
+        <button className='theme' onClick={ ()=>setTheme("light")}>L</button>
+        <button className= {`calculateBtn ${theme}`} onClick={calculateClickFunc}>Calculate</button>
+        <button className='theme'onClick={ ()=>setTheme("dark")} >D</button>
       </div>
     </div>
   )
