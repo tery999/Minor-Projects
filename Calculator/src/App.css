@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: darkgray;
+  padding: 20px;
+}
+.numbers {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.numbers > div {
+  display: flex;
+  gap: 10px;
+}
+.numbers button {
+  width: 60px;
+  height: 60px;
+  font-size: 25px;
+  border-radius: 50%;
+  border: none;
+
+}
