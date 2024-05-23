@@ -4,36 +4,63 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [screenValue, setScreenValue] = useState("");
+
+  const buttonNumberClickFunc =(e) => {
+    const value = e.currentTarget.value;
+    setScreenValue( (prev) => prev+value)
+  }
+
+  const clearClickFunc = () => {
+    setScreenValue("");
+  }
+
+  const calculateClickFunc = () => {
+    let result = eval(screenValue);
+    if ( result === undefined) {
+      setScreenValue("");
+    } else {
+      setScreenValue(result);
+    }
+  }
 
   return (
     <div className='container'>
       <div className='screen'>
-        Screen
+        {screenValue}
       </div>
       <div className='keyboard'>
         <div className='numbers'>
           <div className='first row'>
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
+            <button value="1" onClick={buttonNumberClickFunc}>1</button>
+            <button value="2" onClick={buttonNumberClickFunc}>2</button>
+            <button value="3" onClick={buttonNumberClickFunc}>3</button>
           </div>
           <div className='second row'>
-            <button>4</button>
-            <button>5</button>
-            <button>6</button>
+            <button value="4" onClick={buttonNumberClickFunc}>4</button>
+            <button value="5" onClick={buttonNumberClickFunc}>5</button>
+            <button value="6" onClick={buttonNumberClickFunc}>6</button>
           </div>
           <div className='third row'>
-            <button>7</button>
-            <button>8</button>
-            <button>9</button>
+            <button value="7" onClick={buttonNumberClickFunc}>7</button>
+            <button value="8" onClick={buttonNumberClickFunc}>8</button>
+            <button value="9" onClick={buttonNumberClickFunc}>9</button>
           </div>
           <div className='third row'>
-            <button>0</button>
-            <button>.</button>
-            <button>=</button>
+            <button value="0" onClick={buttonNumberClickFunc}>0</button>
+            <button value="." onClick={buttonNumberClickFunc}>.</button>
+            <button className='delete' onClick={clearClickFunc}>CE</button>
           </div>
         </div>
+        <div className='operators'>
+          <button value="+" onClick={buttonNumberClickFunc}>+</button>
+          <button value="-" onClick={buttonNumberClickFunc}>-</button>
+          <button value="*" onClick={buttonNumberClickFunc}>*</button>
+          <button value="/" onClick={buttonNumberClickFunc}>/</button>
+        </div>
+      </div>
+      <div className='calculate'>
+        <button className='calculateBtn' onClick={calculateClickFunc}>Calculate</button>
       </div>
     </div>
   )
