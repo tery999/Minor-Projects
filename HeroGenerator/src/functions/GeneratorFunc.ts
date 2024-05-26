@@ -1,4 +1,5 @@
-import { FutarkMale, HabileaMale, LatinaeMale, OgamMale, OrkhongMale, SirilskoMale } from "../InformationObjects/names";
+import { FutarkFemale, HabileaFemale, LatinaeFemale, OgamFemale, OrkhongFemale, SirilskoFemale } from "../InformationObjects/namesFemale";
+import { FutarkMale, HabileaMale, LatinaeMale, OgamMale, OrkhongMale, SirilskoMale } from "../InformationObjects/namesMale";
 import { origin, society } from "../Interfaces/QuickHero";
 
 export function genderGenerator(): "мъж" | "жена" {
@@ -72,7 +73,23 @@ export function nameGenerator(gender:"мъж"|"жена" , origin:origin) {
         } else {
             name = HabileaMale[diceRoll];
         }
-
+    }
+    else if (gender ==="жена") {
+        if (origin === "Футарк") {
+            name = FutarkFemale[diceRoll];
+        } else  if (origin==="Огам") {
+            name = OgamFemale[diceRoll];
+        } else if ( origin==="Сирильско краище") {
+            name = SirilskoFemale[diceRoll];
+        } else if ( origin==="Латинае") {
+            name = LatinaeFemale[diceRoll];
+        } else if (origin==="Орхонг") {
+            name = OrkhongFemale[diceRoll];
+        } else {
+            name = HabileaFemale[diceRoll];
+        }
     }
     return name;
 }
+
+
