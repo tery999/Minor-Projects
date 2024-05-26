@@ -1,7 +1,8 @@
+import { FutarkMale } from "../InformationObjects/names";
 import { origin, society } from "../Interfaces/QuickHero";
 
 export function genderGenerator(): "мъж" | "жена" {
-    const diceRoll = Math.floor(Math.random() * 101);
+    const diceRoll = Math.floor(Math.random() * 101)+1;
     if (diceRoll <= 50) {
         const gender = "мъж"
         return gender;
@@ -12,7 +13,7 @@ export function genderGenerator(): "мъж" | "жена" {
 }
 
 export function originGenerator(): origin {
-    const diceRoll = Math.floor(Math.random() * 101);
+    const diceRoll = Math.floor(Math.random() * 101)+1;
     let randomChoice: origin = ""
     switch (true) {
         case (diceRoll <= 15):
@@ -42,7 +43,7 @@ export function originGenerator(): origin {
 }
 
 export function societyGenerator():society {
-    const diceRoll = Math.floor(Math.random() * 101);
+    const diceRoll = Math.floor(Math.random() * 101)+1;
     let society:society = "";
     if (diceRoll <= 25) {
         society = "племенно"
@@ -52,4 +53,16 @@ export function societyGenerator():society {
         society = "индустриално"
     }
     return society;
+}
+
+export function nameGenerator(gender:"мъж"|"жена" , origin:origin) {
+    const diceRoll = Math.floor(Math.random() * 51)+1;
+    let name:string = "";
+    if ( gender === "мъж") {
+        if (origin === "Футарк") {
+            debugger;
+            name = FutarkMale[diceRoll];
+        }
+    }
+    return name;
 }

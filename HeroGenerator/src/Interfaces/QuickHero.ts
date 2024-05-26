@@ -7,4 +7,5 @@ export interface QuickHero {
     gender: "мъж" | "жена" | "",
     origin: origin,
     society: society,
+    name: string,
 }
