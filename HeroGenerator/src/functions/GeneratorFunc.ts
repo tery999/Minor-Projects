@@ -1,7 +1,6 @@
-import { origin } from "../Interfaces/QuickHero";
+import { origin, society } from "../Interfaces/QuickHero";
 
 export function genderGenerator(): "мъж" | "жена" {
-    ;
     const diceRoll = Math.floor(Math.random() * 101);
     if (diceRoll <= 50) {
         const gender = "мъж"
@@ -13,7 +12,6 @@ export function genderGenerator(): "мъж" | "жена" {
 }
 
 export function originGenerator(): origin {
-    ;
     const diceRoll = Math.floor(Math.random() * 101);
     let randomChoice: origin = ""
     switch (true) {
@@ -32,7 +30,26 @@ export function originGenerator(): origin {
         case (diceRoll >= 61 && diceRoll <= 75):
             randomChoice = "Орхонг";
             break;
+            case (diceRoll >= 76 && diceRoll <= 90):
+            randomChoice = "Хабилеа";
+            break;
+            case (diceRoll >= 91):
+            randomChoice = "";
+            break;
 
     }
     return randomChoice;
+}
+
+export function societyGenerator():society {
+    const diceRoll = Math.floor(Math.random() * 101);
+    let society:society = "";
+    if (diceRoll <= 25) {
+        society = "племенно"
+    } else if (diceRoll >= 26 && diceRoll <=75 ){
+        society = "феодално"
+    } else {
+        society = "индустриално"
+    }
+    return society;
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { QuickHero } from "../Interfaces/QuickHero"
-import { genderGenerator } from "../functions/GeneratorFunc"
+import { genderGenerator, originGenerator, societyGenerator } from "../functions/GeneratorFunc"
 
 export default function Quick () {
     const [heroStats, setHeroStats] = useState<QuickHero>({
@@ -11,7 +11,9 @@ export default function Quick () {
 
     useEffect( ()=> {
         const genderGen = genderGenerator();
-        setHeroStats( (prev)=> ({...prev, gender: genderGen }))
+        const origin = originGenerator();
+        const society = societyGenerator();
+        setHeroStats( (prev)=> ({...prev, gender: genderGen , origin: origin, society:society}))
     },[])
 
     return (
