@@ -1,4 +1,4 @@
-import { FutarkMale } from "../InformationObjects/names";
+import { FutarkMale, HabileaMale, LatinaeMale, OgamMale, OrkhongMale, SirilskoMale } from "../InformationObjects/names";
 import { origin, society } from "../Interfaces/QuickHero";
 
 export function genderGenerator(): "мъж" | "жена" {
@@ -60,9 +60,19 @@ export function nameGenerator(gender:"мъж"|"жена" , origin:origin) {
     let name:string = "";
     if ( gender === "мъж") {
         if (origin === "Футарк") {
-            debugger;
             name = FutarkMale[diceRoll];
+        } else  if (origin==="Огам") {
+            name = OgamMale[diceRoll];
+        } else if ( origin==="Сирильско краище") {
+            name = SirilskoMale[diceRoll];
+        } else if ( origin==="Латинае") {
+            name = LatinaeMale[diceRoll];
+        } else if (origin==="Орхонг") {
+            name = OrkhongMale[diceRoll];
+        } else {
+            name = HabileaMale[diceRoll];
         }
+
     }
     return name;
 }
