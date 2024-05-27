@@ -20,10 +20,10 @@ export default function Quick() {
     })
 
     useEffect(() => {
-        // const genderGen = genderGenerator();
-        // const origin = originGenerator("quick");
-        const genderGen = "мъж";
-        const origin = "Футарк";
+        const genderGen = genderGenerator();
+        const origin = originGenerator("quick");
+        // const genderGen = "мъж";
+        // const origin = "Футарк";
         const society = societyGenerator();
         const name = nameGenerator(genderGen, origin)
         const age = ageGenerator();
