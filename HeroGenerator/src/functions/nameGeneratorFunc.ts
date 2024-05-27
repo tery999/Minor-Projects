@@ -124,6 +124,12 @@ export function nameGenerator(gender: "мъж" | "жена", origin: origin) {
             }
         } else if (origin === "Латинае") {
             name = LatinaeFemale[diceRoll];
+            secName = LatinaeFemale[diceRollSecond];
+            trdName = LatinaeFemale[diceRollThird];
+            let fatherForthRoll = Math.floor(Math.random() * 50) + 1;
+            let fatherForthName = LatinaeMale[fatherForthRoll];
+
+            fullName = `${name}-${secName} ${trdName} ${fatherForthName}`;
         } else if (origin === "Орхонг") {
             name = OrkhongFemale[diceRoll];
         } else {
