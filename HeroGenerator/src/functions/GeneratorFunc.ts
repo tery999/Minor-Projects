@@ -101,7 +101,13 @@ export function nameGenerator(gender: "мъж" | "жена", origin: origin) {
             }
         } else if (origin === "Сирильско краище") {
             name = SirilskoMale[diceRoll];
-            secName = SirilskoMale[diceRollSecond]
+            secName = SirilskoMale[diceRollSecond];
+
+            // Marko becomes Markoov, which isnt what we want, this fixes it
+            let oChecker = secName.charAt(secName.length-1);
+            if (oChecker ==="о") {
+                secName = secName.slice(0, -1);
+            }
             // -ов, -овски -ович
             const sirilNameChance = Math.floor(Math.random() * 99) + 1;
             if (sirilNameChance <= 33) {
@@ -115,9 +121,17 @@ export function nameGenerator(gender: "мъж" | "жена", origin: origin) {
             //LATER NEED FEMALE NAMES TO CREATE FULL NAME
             name = LatinaeMale[diceRoll];
         } else if (origin === "Орхонг") {
+            //WAITING CLARIFICATION ABOUT NAME CONSTRUCTION REGARDING AGE
             name = OrkhongMale[diceRoll];
         } else {
             name = HabileaMale[diceRoll];
+            secName = HabileaMale[diceRollSecond];
+            trdName = HabileaMale[diceRollThird];
+            let familyNameDiceRoll = Math.floor(Math.random() * 50) + 1;
+            let familyName = HabileaMale[familyNameDiceRoll];
+            let ibnOrBen = diceRoll <=25 ? "ибн" : "бен";
+            fullName = `${name} ${ibnOrBen} ${secName} ${ibnOrBen} ${trdName} ел-${familyName}`;
+
         }
     }
     else if (gender === "жена") {
