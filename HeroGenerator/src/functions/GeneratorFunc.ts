@@ -1,5 +1,4 @@
-import { FutarkFemale, HabileaFemale, LatinaeFemale, OgamFemale, OrkhongFemale, SirilskoFemale } from "../InformationObjects/namesFemale";
-import { FutarkMale, HabileaMale, LatinaeMale, OgamMale, OrkhongMale, SirilskoMale } from "../InformationObjects/namesMale";
+
 import { origin, society } from "../Interfaces/QuickHero";
 
 export function genderGenerator(): "мъж" | "жена" {
@@ -63,93 +62,5 @@ export function societyGenerator(): society {
     return society;
 }
 
-export function nameGenerator(gender: "мъж" | "жена", origin: origin) {
-    //given name
-    const diceRoll = Math.floor(Math.random() * 50) + 1;
-    //second name
-    const diceRollSecond = Math.floor(Math.random() * 50) + 1;
-    //third name or clan
-    const diceRollThird = Math.floor(Math.random() * 50) + 1;
-    let name: string = "";
-    let secName: string = "";
-    let trdName:string = "";
-    let fullName:string = "";
-    if (gender === "мъж") {
-        if (origin === "Футарк") {
-            name = FutarkMale[diceRoll];
-            secName = FutarkMale[diceRollSecond] + "сон";
-            trdName = FutarkMale[diceRollThird];
-            const VonChance = Math.floor(Math.random() * 100) + 1;
-            if (VonChance >= 51) {
-                fullName = `${name} ${secName} Вон ${trdName}`
-                return fullName;
-            } else {
-                fullName = `${name} ${secName}`;
-            }
-
-        } else if (origin === "Огам") {
-            name = OgamMale[diceRoll];
-            secName = OgamMale[diceRollSecond]
-            // Mac, Of, O
-            const ogamNameChance = Math.floor(Math.random() * 99) + 1;
-            if (ogamNameChance <= 33) {
-                fullName = `${name} Мак${secName.toLowerCase()}`;
-            } else if ( ogamNameChance >= 34 && ogamNameChance <= 66) {
-                fullName = `${name} О${secName.toLowerCase()}`;
-            } else {
-                fullName = `${name} ъв ${secName}`;
-            }
-        } else if (origin === "Сирильско краище") {
-            name = SirilskoMale[diceRoll];
-            secName = SirilskoMale[diceRollSecond];
-
-            // Marko becomes Markoov, which isnt what we want, this fixes it
-            let oChecker = secName.charAt(secName.length-1);
-            if (oChecker ==="о") {
-                secName = secName.slice(0, -1);
-            }
-            // -ов, -овски -ович
-            const sirilNameChance = Math.floor(Math.random() * 99) + 1;
-            if (sirilNameChance <= 33) {
-                fullName = `${name} ${secName}ов`;
-            } else if ( sirilNameChance >= 34 && sirilNameChance <= 66) {
-                fullName = `${name} ${secName}овски`;
-            } else {
-                fullName = `${name} ${secName}ович`;
-            }
-        } else if (origin === "Латинае") {
-            //LATER NEED FEMALE NAMES TO CREATE FULL NAME
-            name = LatinaeMale[diceRoll];
-        } else if (origin === "Орхонг") {
-            //WAITING CLARIFICATION ABOUT NAME CONSTRUCTION REGARDING AGE
-            name = OrkhongMale[diceRoll];
-        } else {
-            name = HabileaMale[diceRoll];
-            secName = HabileaMale[diceRollSecond];
-            trdName = HabileaMale[diceRollThird];
-            let familyNameDiceRoll = Math.floor(Math.random() * 50) + 1;
-            let familyName = HabileaMale[familyNameDiceRoll];
-            let ibnOrBen = diceRoll <=25 ? "ибн" : "бен";
-            fullName = `${name} ${ibnOrBen} ${secName} ${ibnOrBen} ${trdName} ел-${familyName}`;
-
-        }
-    }
-    else if (gender === "жена") {
-        if (origin === "Футарк") {
-            name = FutarkFemale[diceRoll];
-        } else if (origin === "Огам") {
-            name = OgamFemale[diceRoll];
-        } else if (origin === "Сирильско краище") {
-            name = SirilskoFemale[diceRoll];
-        } else if (origin === "Латинае") {
-            name = LatinaeFemale[diceRoll];
-        } else if (origin === "Орхонг") {
-            name = OrkhongFemale[diceRoll];
-        } else {
-            name = HabileaFemale[diceRoll];
-        }
-    }
-    return fullName;
-}
 
 

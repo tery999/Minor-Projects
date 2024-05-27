@@ -3,9 +3,19 @@ export type origin = "Футарк" | "Огам" | "Сирильско краи�
 
 export type society = "племенно" | "феодално" | "индустриално" | ""
 
+export type age = ""| "детство" | "юношество" | "младост" | "зрялост" | "старост"
+
+export type appearance = {
+    color: string,
+    hair: string,
+    eyes: string
+}
+
 export interface QuickHero {
     gender: "мъж" | "жена" | "",
     origin: origin,
     society: society,
     name: string,
+    age: age
+    appearance: appearance
 }
