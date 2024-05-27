@@ -15,9 +15,9 @@ export function genderGenerator(): "мъж" | "жена" {
 //pick their own stat , if they are lucky and roll higher than 90
 export function originGenerator(option:"quick"|"complex"): origin {
     let diceRoll:number = 0;
-    if (option === "quick") {
+    if (option === "complex") {
         diceRoll = Math.floor(Math.random() * 100) + 1;
-    } else if (option ==="complex") {
+    } else if (option ==="quick") {
         diceRoll = Math.floor(Math.random() * 90) + 1;
     }
    

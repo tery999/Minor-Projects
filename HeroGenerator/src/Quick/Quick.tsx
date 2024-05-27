@@ -3,7 +3,7 @@ import { QuickHero } from "../Interfaces/QuickHero"
 import { Link } from "react-router-dom"
 import { genderGenerator, originGenerator, societyGenerator } from "../functions/GeneratorFunc"
 import { nameGenerator } from "../functions/nameGeneratorFunc"
-import { ageGenerator, appearanceGeneratorFunc } from "../functions/appearanceGenerator"
+import { ageGenerator, appearanceGeneratorFunc, featuresGenerator } from "../functions/appearanceGenerator"
 
 export default function Quick() {
     const [heroStats, setHeroStats] = useState<QuickHero>({
@@ -16,7 +16,8 @@ export default function Quick() {
             color: "",
             hair: "",
             eyes: ""
-        }
+        },
+        features: ""
     })
 
     useEffect(() => {
@@ -28,8 +29,9 @@ export default function Quick() {
         const name = nameGenerator(genderGen, origin)
         const age = ageGenerator();
         const appearance = appearanceGeneratorFunc(origin);
+        const features = featuresGenerator();
         setHeroStats((prev) => ({ ...prev, gender: genderGen, origin: origin, 
-            society: society, name: name , age:age, appearance:appearance}))
+            society: society, name: name , age:age, appearance:appearance , features:features}))
     }, [])
 
     return (
@@ -48,6 +50,7 @@ export default function Quick() {
             <p> Тен: {heroStats.appearance.color}</p>
             <p> Коса: {heroStats.appearance.hair}</p>
             <p> Очи: {heroStats.appearance.eyes}</p>
+            <p> Отличителни белези: {heroStats.features}</p>
             </div>
         </div>
     )

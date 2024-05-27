@@ -16,6 +16,7 @@ export interface QuickHero {
     origin: origin,
     society: society,
     name: string,
-    age: age
-    appearance: appearance
+    age: age,
+    appearance: appearance,
+    features: string
 }
