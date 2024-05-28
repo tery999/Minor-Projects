@@ -3,4 +3,29 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 15px;
+}
+
+.containerInfo {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 15px;
+}
+
+.containerInfo > div {
+    width: 300px;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    border: 2px solid black;
+}
+
+.containerInfo > div > h2 {
+    align-self: center;
+    text-align: center;
 }

@@ -1,3 +1,4 @@
+import "./Quick.css"
 import { useEffect, useState } from "react"
 import { QuickHero } from "../Interfaces/QuickHero"
 import { Link } from "react-router-dom"
@@ -28,7 +29,7 @@ export default function Quick() {
             character: "",
             calling: "",
             aims: "",
-            concerns:""
+            concerns: ""
         },
         familyAndRelationships: {
             surrounding: "",
@@ -61,52 +62,54 @@ export default function Quick() {
         const familyAndRelationships = familyAndRelationshipsCombined(age)
         setHeroStats((prev) => ({
             ...prev, gender: genderGen, origin: origin,
-            society: society, name: name, age: age, appearance: appearance, 
+            society: society, name: name, age: age, appearance: appearance,
             features: features, body: body,
             worldView: {
                 character, calling, aims, concerns
-            } , familyAndRelationships
+            }, familyAndRelationships
         }))
     }, [])
 
     return (
         <div className="container">
             <Link to="/">Назад</Link>
-            <div>
-                <h2>Наративни характеристики</h2>
-                <p> Пол: {heroStats.gender}</p>
-                <p> Произход: {heroStats.origin}</p>
-                <p> Общество: {heroStats.society}</p>
-                <p> Име: {heroStats.name}</p>
-            </div>
-            <div>
-                <h2>Външност</h2>
-                <p> Възраст: {heroStats.age}</p>
-                <p> Тен: {heroStats.appearance.color}</p>
-                <p> Коса: {heroStats.appearance.hair}</p>
-                <p> Очи: {heroStats.appearance.eyes}</p>
-                <p> Отличителни белези: {heroStats.features}</p>
-                <p>Ръст: {heroStats.body.height}</p>
-                <p>Форма: {heroStats.body.shape}</p>
-            </div>
-            <div>
-                <h2>Мироглед</h2>
-                <p> Нрав: {heroStats.worldView.character}</p>
-                <p> Призвание: {heroStats.worldView.calling}</p>
-                <p> Цели: {heroStats.worldView.aims}</p>
-                <p> Опасения: {heroStats.worldView.concerns}</p>
-            </div>
-            <div>
-                <h2>Среда и положение</h2>
-                <p> Среда: {heroStats.familyAndRelationships.surrounding}</p>
-                <p> Положение: {heroStats.familyAndRelationships.wealth}</p>
-                <p> Род: {heroStats.familyAndRelationships.familyReputation}</p>
-                <p> Семейство: НЕ Е ГОТОВО</p>
-                <p> Братя и сестри: {heroStats.familyAndRelationships.siblings}</p>
-                <p> Семейно положение: {heroStats.familyAndRelationships.relationshipStatus}</p>
-                <p> Очаквания и репутация: НЕ Е ГОТОВО</p>
-                <p> Приятелства: НЕ Е ГОТОВО</p>
-                <p> Вражди: НЕ Е ГОТОВО</p>
+            <div className="containerInfo">
+                <div>
+                    <h2>Наративни характеристики</h2>
+                    <p> Пол: {heroStats.gender}</p>
+                    <p> Произход: {heroStats.origin}</p>
+                    <p> Общество: {heroStats.society}</p>
+                    <p> Име: {heroStats.name}</p>
+                </div>
+                <div>
+                    <h2>Външност</h2>
+                    <p> Възраст: {heroStats.age}</p>
+                    <p> Тен: {heroStats.appearance.color}</p>
+                    <p> Коса: {heroStats.appearance.hair}</p>
+                    <p> Очи: {heroStats.appearance.eyes}</p>
+                    <p> Отличителни белези: {heroStats.features}</p>
+                    <p>Ръст: {heroStats.body.height}</p>
+                    <p>Форма: {heroStats.body.shape}</p>
+                </div>
+                <div>
+                    <h2>Мироглед</h2>
+                    <p> Нрав: {heroStats.worldView.character}</p>
+                    <p> Призвание: {heroStats.worldView.calling}</p>
+                    <p> Цели: {heroStats.worldView.aims}</p>
+                    <p> Опасения: {heroStats.worldView.concerns}</p>
+                </div>
+                <div>
+                    <h2>Среда и положение</h2>
+                    <p> Среда: {heroStats.familyAndRelationships.surrounding}</p>
+                    <p> Положение: {heroStats.familyAndRelationships.wealth}</p>
+                    <p> Род: {heroStats.familyAndRelationships.familyReputation}</p>
+                    <p> Семейство: НЕ Е ГОТОВО</p>
+                    <p> Братя и сестри: {heroStats.familyAndRelationships.siblings}</p>
+                    <p> Семейно положение: {heroStats.familyAndRelationships.relationshipStatus}</p>
+                    <p> Очаквания и репутация: НЕ Е ГОТОВО</p>
+                    <p> Приятелства: НЕ Е ГОТОВО</p>
+                    <p> Вражди: НЕ Е ГОТОВО</p>
+                </div>
             </div>
             {/* surrounding: string,
     wealth: string,
