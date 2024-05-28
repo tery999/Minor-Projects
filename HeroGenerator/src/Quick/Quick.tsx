@@ -5,6 +5,7 @@ import { genderGenerator, originGenerator, societyGenerator } from "../functions
 import { nameGenerator } from "../functions/nameGeneratorFunc"
 import { ageGenerator, appearanceGeneratorFunc, bodyTypesGenerator, featuresGenerator } from "../functions/appearanceGenerator"
 import { aimsGenerator, callingGenerator, characterGenerator, concernsGenerator } from "../functions/worldViewGenerator"
+import { familyAndRelationshipsCombined } from "../functions/familyRelationshipsGenerator"
 
 export default function Quick() {
     const [heroStats, setHeroStats] = useState<QuickHero>({
@@ -28,6 +29,17 @@ export default function Quick() {
             calling: "",
             aims: "",
             concerns:""
+        },
+        familyAndRelationships: {
+            surrounding: "",
+            wealth: "",
+            familyReputation: "",
+            // family: string,
+            siblings: "",
+            relationshipStatus: ""
+            // ownReputation: string,
+            // friendship: string,
+            // enemies: string
         }
     })
 
@@ -46,13 +58,14 @@ export default function Quick() {
         const calling = callingGenerator();
         const aims = aimsGenerator();
         const concerns = concernsGenerator();
+        const familyAndRelationships = familyAndRelationshipsCombined(age)
         setHeroStats((prev) => ({
             ...prev, gender: genderGen, origin: origin,
             society: society, name: name, age: age, appearance: appearance, 
             features: features, body: body,
             worldView: {
                 character, calling, aims, concerns
-            }
+            } , familyAndRelationships
         }))
     }, [])
 
@@ -83,6 +96,27 @@ export default function Quick() {
                 <p> Цели: {heroStats.worldView.aims}</p>
                 <p> Опасения: {heroStats.worldView.concerns}</p>
             </div>
+            <div>
+                <h2>Среда и положение</h2>
+                <p> Среда: {heroStats.familyAndRelationships.surrounding}</p>
+                <p> Положение: {heroStats.familyAndRelationships.wealth}</p>
+                <p> Род: {heroStats.familyAndRelationships.familyReputation}</p>
+                <p> Семейство: НЕ Е ГОТОВО</p>
+                <p> Братя и сестри: {heroStats.familyAndRelationships.siblings}</p>
+                <p> Семейно положение: {heroStats.familyAndRelationships.relationshipStatus}</p>
+                <p> Очаквания и репутация: НЕ Е ГОТОВО</p>
+                <p> Приятелства: НЕ Е ГОТОВО</p>
+                <p> Вражди: НЕ Е ГОТОВО</p>
+            </div>
+            {/* surrounding: string,
+    wealth: string,
+    familyReputation: string,
+    // family: string,
+    siblings: string,
+    relationshipStatus: relationshipStatus
+    // ownReputation: string,
+    // friendship: string,
+    // enemies: string */}
         </div>
     )
 }
