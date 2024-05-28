@@ -1,10 +1,10 @@
 import { FutarkFemale, HabileaFemale, LatinaeFemale, OgamFemale, OrkhongFemale, SirilskoFemale } from "../InformationObjects/namesFemale";
 import { FutarkMale, HabileaMale, LatinaeMale, OgamMale, OrkhongMale, SirilskoMale } from "../InformationObjects/namesMale";
-import { origin } from "../Interfaces/QuickHero";
+import { age, origin } from "../Interfaces/QuickHero";
 
 // making separate file as the function became too long
 
-export function nameGenerator(gender: "мъж" | "жена", origin: origin) {
+export function nameGenerator(gender: "мъж" | "жена", origin: origin, age:age) {
     //given name
     const diceRoll = Math.floor(Math.random() * 50) + 1;
     //second name
@@ -36,7 +36,7 @@ export function nameGenerator(gender: "мъж" | "жена", origin: origin) {
             if (ogamNameChance <= 33) {
                 fullName = `${name} Мак${secName.toLowerCase()}`;
             } else if ( ogamNameChance >= 34 && ogamNameChance <= 66) {
-                fullName = `${name} О${secName.toLowerCase()}`;
+                fullName = `${name} О'${secName.toLowerCase()}`;
             } else {
                 fullName = `${name} ъв ${secName}`;
             }
@@ -67,8 +67,16 @@ export function nameGenerator(gender: "мъж" | "жена", origin: origin) {
 
             fullName = `${name}-${secName} ${trdName} ${fatherForthName}`;
         } else if (origin === "Орхонг") {
-            //WAITING CLARIFICATION ABOUT NAME CONSTRUCTION REGARDING AGE
             name = OrkhongMale[diceRoll];
+            secName = OrkhongMale[diceRollSecond];
+
+            if (age==="детство") {
+                fullName = `${secName} ${name}`;
+                return fullName;
+            } else {
+                trdName = OrkhongMale[diceRollThird];
+                fullName = `${secName}${name} ${trdName}`
+            }
         } else {
             name = HabileaMale[diceRoll];
             secName = HabileaMale[diceRollSecond];
@@ -100,7 +108,7 @@ export function nameGenerator(gender: "мъж" | "жена", origin: origin) {
             if (ogamNameChance <= 33) {
                 fullName = `${name} Мак${secName.toLowerCase()}`;
             } else if ( ogamNameChance >= 34 && ogamNameChance <= 66) {
-                fullName = `${name} О${secName.toLowerCase()}`;
+                fullName = `${name} О'${secName.toLowerCase()}`;
             } else {
                 fullName = `${name} ъв ${secName}`;
             }
@@ -132,6 +140,15 @@ export function nameGenerator(gender: "мъж" | "жена", origin: origin) {
             fullName = `${name}-${secName} ${trdName} ${fatherForthName}`;
         } else if (origin === "Орхонг") {
             name = OrkhongFemale[diceRoll];
+            secName = OrkhongMale[diceRollSecond];
+
+            if (age==="детство") {
+                fullName = `${secName} ${name}`;
+                return fullName;
+            } else {
+                trdName = OrkhongFemale[diceRollThird];
+                fullName = `${secName}${name} ${trdName}`
+            }
         } else {
             name = HabileaFemale[diceRoll];
             secName = HabileaMale[diceRollSecond];

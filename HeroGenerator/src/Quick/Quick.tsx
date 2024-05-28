@@ -26,8 +26,8 @@ export default function Quick() {
         // const genderGen = "мъж";
         // const origin = "Футарк";
         const society = societyGenerator();
-        const name = nameGenerator(genderGen, origin)
         const age = ageGenerator();
+        const name = nameGenerator(genderGen, origin, age)
         const appearance = appearanceGeneratorFunc(origin);
         const features = featuresGenerator();
         setHeroStats((prev) => ({ ...prev, gender: genderGen, origin: origin, 
