@@ -147,7 +147,7 @@ export function nameGenerator(gender: "мъж" | "жена", origin: origin, age
                 return fullName;
             } else {
                 trdName = OrkhongFemale[diceRollThird];
-                fullName = `${secName}${name} ${trdName}`
+                fullName = `${secName} ${name} ${trdName}`
             }
         } else {
             name = HabileaFemale[diceRoll];

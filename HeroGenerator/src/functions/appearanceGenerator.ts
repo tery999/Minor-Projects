@@ -1,5 +1,5 @@
 import { features } from "../InformationObjects/features";
-import { age, appearance, origin } from "../Interfaces/QuickHero";
+import { age, appearance, body, origin } from "../Interfaces/QuickHero";
 
 export function ageGenerator(): age {
     let age: age = "";
@@ -474,4 +474,353 @@ export function featuresGenerator(): string {
     }
 
     return featuresPresentString;
+}
+
+export function bodyTypesGenerator(gender: "мъж" | "жена" | "", age: age, origin: origin): body {
+    let height: number = 0;
+    let shape: number = 0;
+
+    let genderRollHeight = Math.floor(Math.random() * 100) + 1;
+    let genderRollShape = Math.floor(Math.random() * 100) + 1;
+
+    if (gender === "мъж") {
+        switch (true) {
+            case genderRollHeight <= 20:
+                height += 4;
+                break
+
+            case genderRollHeight >= 21 && genderRollHeight <= 70:
+                height += 6;
+                break
+
+            case genderRollHeight >= 71:
+                height += 7;
+                break
+        }
+        switch (true) {
+            case genderRollShape <= 20:
+                shape += 4;
+                break
+
+            case genderRollShape >= 21 && genderRollShape <= 70:
+                shape += 6;
+                break
+
+            case genderRollShape >= 71:
+                shape += 7;
+                break
+        }
+    } else if (gender === "жена") {
+        switch (true) {
+            case genderRollHeight <= 20:
+                height += 7;
+                break
+
+            case genderRollHeight >= 21 && genderRollHeight <= 70:
+                height += 4;
+                break
+
+            case genderRollHeight >= 71:
+                height += 5;
+                break
+        }
+        switch (true) {
+            case genderRollShape <= 20:
+                shape += 7;
+                break
+
+            case genderRollShape >= 21 && genderRollShape <= 70:
+                shape += 4;
+                break
+
+            case genderRollShape >= 71:
+                shape += 5;
+                break
+        }
+    }
+    let ageRollHeight = Math.floor(Math.random() * 100) + 1;
+    let ageRollShape = Math.floor(Math.random() * 100) + 1;
+
+    if (age === "детство" || "старост") {
+        switch (true) {
+            case ageRollHeight <= 20:
+                height -= 2;
+                break
+
+            case ageRollHeight >= 21 && ageRollHeight <= 70:
+                height -= 1;
+                break
+
+            case ageRollHeight >= 71:
+                height += 0;
+                break
+        }
+        switch (true) {
+            case ageRollShape <= 20:
+                shape -= 2;
+                break
+
+            case ageRollShape >= 21 && ageRollShape <= 70:
+                shape -= 1;
+                break
+
+            case ageRollShape >= 71:
+                shape += 0;
+                break
+        }
+    } else if (age === "юношество" || "младост") {
+        switch (true) {
+            case ageRollHeight <= 20:
+                height -= 1;
+                break
+
+            case ageRollHeight >= 21 && ageRollHeight <= 70:
+                height += 1;
+                break
+
+            case ageRollHeight >= 71:
+                height += 0;
+                break
+        }
+        switch (true) {
+            case ageRollShape <= 20:
+                shape -= 1;
+                break
+
+            case ageRollShape >= 21 && ageRollShape <= 70:
+                shape += 1;
+                break
+
+            case ageRollShape >= 71:
+                shape += 0;
+                break
+        }
+    } else if (age === "зрялост") {
+        switch (true) {
+            case ageRollHeight <= 20:
+                height += 0;
+                break
+
+            case ageRollHeight >= 21 && ageRollHeight <= 70:
+                height -= 1;
+                break
+
+            case ageRollHeight >= 71:
+                height -= 2;
+                break
+        }
+        switch (true) {
+            case ageRollShape <= 20:
+                shape += 0;
+                break
+
+            case ageRollShape >= 21 && ageRollShape <= 70:
+                shape -= 1;
+                break
+
+            case ageRollShape >= 71:
+                shape -= 2;
+                break
+        }
+    }
+
+    let originRollHeight = Math.floor(Math.random() * 100) + 1;
+    let originRollShape = Math.floor(Math.random() * 100) + 1;
+
+    if (origin === "Футарк" || "Хабилеа") {
+        switch (true) {
+            case originRollHeight <= 20:
+                height += 2;
+                break;
+
+            case originRollHeight >= 21 && originRollHeight <= 50:
+                height += 1;
+                break;
+
+            case originRollHeight >= 51 && originRollHeight <= 80:
+                height -= 1;
+                break;
+
+            case originRollHeight >= 81:
+                height -= 2;
+                break;
+        }
+        switch (true) {
+            case originRollShape <= 20:
+                shape += 2;
+                break;
+
+            case originRollShape >= 21 && originRollShape <= 50:
+                shape += 1;
+                break;
+
+            case originRollShape >= 51 && originRollShape <= 80:
+                shape -= 1;
+                break;
+
+            case originRollShape >= 81:
+                shape -= 2;
+                break;
+        }
+    } else if (origin === "Огам") {
+        switch (true) {
+            case originRollHeight <= 20:
+                height -= 1;
+                break;
+
+            case originRollHeight >= 21 && originRollHeight <= 70:
+                height += 2;
+                break;
+
+            case originRollHeight >= 71:
+                height += 0;
+                break;
+        }
+        switch (true) {
+            case originRollShape <= 20:
+                shape += 0;
+                break;
+
+            case originRollShape >= 21 && originRollShape <= 70:
+                shape += 1;
+                break;
+
+            case originRollShape >= 71:
+                shape -= 1;
+                break;
+        }
+    } else if (origin === "Сирильско краище") {
+        switch (true) {
+            case originRollHeight <= 20:
+                height -= 2;
+                break;
+
+            case originRollHeight >= 21 && originRollHeight <= 70:
+                height += 0;
+                break;
+
+            case originRollHeight >= 71:
+                height += 1;
+                break;
+        }
+        switch (true) {
+            case originRollShape <= 20:
+                shape += 2;
+                break;
+
+            case originRollShape >= 21 && originRollShape <= 70:
+                shape += 0;
+                break;
+
+            case originRollShape >= 71:
+                shape -= 2;
+                break;
+        }
+    } else if (origin === "Латинае") {
+        switch (true) {
+            case originRollHeight <= 20:
+                height -= 2;
+                break;
+
+            case originRollHeight >= 21 && originRollHeight <= 70:
+                height -= 1;
+                break;
+
+            case originRollHeight >= 71:
+                height += 1;
+                break;
+        }
+        switch (true) {
+            case originRollShape <= 20:
+                shape -= 1;
+                break;
+
+            case originRollShape >= 21 && originRollShape <= 70:
+                shape += 0;
+                break;
+
+            case originRollShape >= 71:
+                shape += 1;
+                break;
+        }
+    } else if (origin === "Орхонг") {
+        switch (true) {
+            case originRollHeight <= 20:
+                height += 1;
+                break;
+
+            case originRollHeight >= 21 && originRollHeight <= 70:
+                height -= 1;
+                break;
+
+            case originRollHeight >= 71:
+                height += 0;
+                break;
+        }
+        switch (true) {
+            case originRollShape <= 20:
+                shape -= 1;
+                break;
+
+            case originRollShape >= 21 && originRollShape <= 70:
+                shape += 1;
+                break;
+
+            case originRollShape >= 71:
+                shape += 0;
+                break;
+        }
+    }
+
+    let heightInfo = "";
+    let shapeInfo = "";
+
+    switch (true) {
+        case height <= 1:
+            heightInfo = "много нисък";
+            break;
+
+        case height <= 3:
+            heightInfo = "нисък";
+            break;
+
+        case height <= 6:
+            heightInfo = "среден";
+            break;
+
+        case height <= 8:
+            heightInfo = "висок";
+            break;
+
+        case height <= 10:
+            heightInfo = "много висок";
+            break;
+    }
+    switch (true) {
+        case shape <= 1:
+            shapeInfo = "отпусната";
+            break;
+
+        case shape <= 3:
+            shapeInfo = "закръглена";
+            break;
+
+        case shape <= 6:
+            shapeInfo = "нормална";
+            break;
+
+        case shape <= 8:
+            shapeInfo = "стройна";
+            break;
+
+        case shape <= 10:
+            shapeInfo = "отлична";
+            break;
+    }
+
+    const body:body = {
+        height:heightInfo,
+        shape:shapeInfo
+    }
+    return body;
 }

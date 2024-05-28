@@ -3,7 +3,7 @@ import { QuickHero } from "../Interfaces/QuickHero"
 import { Link } from "react-router-dom"
 import { genderGenerator, originGenerator, societyGenerator } from "../functions/GeneratorFunc"
 import { nameGenerator } from "../functions/nameGeneratorFunc"
-import { ageGenerator, appearanceGeneratorFunc, featuresGenerator } from "../functions/appearanceGenerator"
+import { ageGenerator, appearanceGeneratorFunc, bodyTypesGenerator, featuresGenerator } from "../functions/appearanceGenerator"
 
 export default function Quick() {
     const [heroStats, setHeroStats] = useState<QuickHero>({
@@ -17,7 +17,11 @@ export default function Quick() {
             hair: "",
             eyes: ""
         },
-        features: ""
+        features: "",
+        body: {
+            height: "",
+            shape: ""
+        }
     })
 
     useEffect(() => {
@@ -30,8 +34,9 @@ export default function Quick() {
         const name = nameGenerator(genderGen, origin, age)
         const appearance = appearanceGeneratorFunc(origin);
         const features = featuresGenerator();
+        const body = bodyTypesGenerator(genderGen, age, origin)
         setHeroStats((prev) => ({ ...prev, gender: genderGen, origin: origin, 
-            society: society, name: name , age:age, appearance:appearance , features:features}))
+            society: society, name: name , age:age, appearance:appearance , features:features, body:body}))
     }, [])
 
     return (
@@ -51,6 +56,8 @@ export default function Quick() {
             <p> Коса: {heroStats.appearance.hair}</p>
             <p> Очи: {heroStats.appearance.eyes}</p>
             <p> Отличителни белези: {heroStats.features}</p>
+            <p>Ръст: {heroStats.body.height}</p>
+            <p>Форма: {heroStats.body.shape}</p>
             </div>
         </div>
     )

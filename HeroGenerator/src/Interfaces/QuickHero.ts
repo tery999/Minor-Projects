@@ -11,6 +11,11 @@ export type appearance = {
     eyes: string
 }
 
+export type body = {
+    height:string,
+    shape:string
+}
+
 export interface QuickHero {
     gender: "мъж" | "жена" | "",
     origin: origin,
@@ -18,5 +23,6 @@ export interface QuickHero {
     name: string,
     age: age,
     appearance: appearance,
-    features: string
+    features: string,
+    body: body
 }
