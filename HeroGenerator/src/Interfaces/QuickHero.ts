@@ -16,6 +16,13 @@ export type body = {
     shape:string
 }
 
+export type worldView = {
+    character: string,
+    calling: string,
+    aims: string,
+    concerns:string
+}
+
 export interface QuickHero {
     gender: "мъж" | "жена" | "",
     origin: origin,
@@ -24,5 +31,6 @@ export interface QuickHero {
     age: age,
     appearance: appearance,
     features: string,
-    body: body
+    body: body,
+    worldView:worldView
 }
