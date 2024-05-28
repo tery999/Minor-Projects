@@ -23,6 +23,19 @@ export type worldView = {
     concerns:string
 }
 
+export type familyAndRelationships = {
+    surrounding: string,
+    wealth: string,
+    familyReputation: string,
+    // family: string,
+    siblings: string,
+    relationshipStatus: string,
+    ownReputation: string,
+    friendship: string,
+    enemies: string
+
+}
+
 export interface QuickHero {
     gender: "мъж" | "жена" | "",
     origin: origin,
