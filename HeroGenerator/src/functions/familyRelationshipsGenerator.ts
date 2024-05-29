@@ -1,8 +1,8 @@
-import { age, familyAndRelationships, relationshipStatus } from "../Interfaces/QuickHero";
+import { age, familyAndRelationships, relationshipStatus, surrounding } from "../Interfaces/QuickHero";
 import { diceRollFunction } from "./utils";
 
-export function surroundingGenerator(): string {
-    let surrounding = "";
+export function surroundingGenerator(): surrounding {
+    let surrounding: surrounding = "";
     const roll = diceRollFunction(100);
     switch (true) {
         case roll <= 10:
@@ -168,12 +168,94 @@ export function relationshipStatusFunc(age: age): relationshipStatus {
     return relationshipStatus;
 }
 
-export function familyAndRelationshipsCombined(age:age):familyAndRelationships {
-    const surrounding = surroundingGenerator();
+export function reputationGenerator(surrounding: surrounding): string {
+    const roll = diceRollFunction(100);
+    let reputation = "";
+
+    if (roll <= 25) {
+        switch (true) {
+            case surrounding === "дворянство":
+                reputation = `дворянство: всички в рода ти очакват
+                да браниш достойнството му на всяка цена и
+                за теб това е въпрос на чест.`
+                break;
+
+            case surrounding === "духовенство":
+                reputation = `духовенство: всеотдайната ти вяра
+                напълно изключва всякакви отклонения от
+                религиозните закони.`
+                break;
+
+            case surrounding === "интелигенция":
+                reputation = `интелигенция: просветените ти
+                съвременници очакват да блеснеш с
+                изумително изобретение, откритие,
+                произведение на изкуството или влиятелна
+                поредица от писания`
+                break;
+
+            case surrounding === "простолюдие":
+                reputation = `простолюдие: имаш непреодолим
+                дълг да се грижиш за семейството си,
+                приятелите и всичките си ближни.`
+                break;
+
+            case surrounding === "подземен свят":
+                reputation = `подземен свят: съдружниците ти
+                разчитат на теб винаги да мислиш с няколко
+                хода напред от общите ви врагове.`
+                break;
+        }
+
+    } else if (roll >= 26 && roll <= 75) {
+        reputation = `малцина извън редовното ти
+        обкръжение имат повод да те помнят с нещо
+        особено, така че към теб няма необичайно
+        високи или ниски очаквания`
+    } else if ( roll>= 76) {
+        switch (true) {
+            case surrounding === "дворянство":
+                reputation = `дворянство: които благородници не
+                ти се присмиват открито в лицето,
+                обикновено те сочат зад гърба със
+                снизхождение.`
+                break;
+
+            case surrounding === "духовенство":
+                reputation = `духовенство: нерядко те заплашва
+                отлъчване заради подозрения в какви ли не
+                мерзки грехове.`
+                break;
+
+            case surrounding === "интелигенция":
+                reputation = `интелигенция: мнозина завистливи
+                хора биха те обвинили в самозванство или
+                дори чиста липса на талант.`
+                break;
+
+            case surrounding === "простолюдие":
+                reputation = `простолюдие: който не страни от теб,
+                е свикнал с нехайството и непохватността ти.`
+                break;
+
+            case surrounding === "подземен свят":
+                reputation = `подземен свят: всичките ти
+съратници с удивление се питат как главата
+ти все още е на раменете.`
+                break;
+        }
+    }
+
+    return reputation;
+}
+
+export function familyAndRelationshipsCombined(age: age,): familyAndRelationships {
+    const surrounding: surrounding = surroundingGenerator();
     const wealth = wealthGenerator();
     const familyReputation = familyReputationGenerator();
     const siblings = siblingsGenerator();
     const relationshipStatus = relationshipStatusFunc(age)
+    const ownReputation = reputationGenerator(surrounding);
 
 
     const familyAndRelationships: familyAndRelationships = {
@@ -182,8 +264,8 @@ export function familyAndRelationshipsCombined(age:age):familyAndRelationships {
         familyReputation: familyReputation,
         // family: string,
         siblings: siblings,
-        relationshipStatus: relationshipStatus
-        // ownReputation: string,
+        relationshipStatus: relationshipStatus,
+        ownReputation: ownReputation,
         // friendship: string,
         // enemies: string
     }

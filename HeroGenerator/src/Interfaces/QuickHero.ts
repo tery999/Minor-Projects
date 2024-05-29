@@ -25,14 +25,16 @@ export type worldView = {
 
 export type relationshipStatus = "" |"брак"|"годеж"|"необвързаност"|"развод"|"вдовство"   
 
+export type surrounding = "" | "дворянство" | "духовенство" | "интелигенция" | "простолюдие" | "подземен свят"
+
 export type familyAndRelationships = {
-    surrounding: string,
+    surrounding: surrounding,
     wealth: string,
     familyReputation: string,
     // family: string,
     siblings: string,
     relationshipStatus: relationshipStatus
-    // ownReputation: string,
+    ownReputation: string,
     // friendship: string,
     // enemies: string
 

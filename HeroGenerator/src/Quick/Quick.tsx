@@ -37,8 +37,8 @@ export default function Quick() {
             familyReputation: "",
             // family: string,
             siblings: "",
-            relationshipStatus: ""
-            // ownReputation: string,
+            relationshipStatus: "",
+            ownReputation: "",
             // friendship: string,
             // enemies: string
         }
@@ -106,7 +106,7 @@ export default function Quick() {
                     <p> Семейство: НЕ Е ГОТОВО</p>
                     <p> Братя и сестри: {heroStats.familyAndRelationships.siblings}</p>
                     <p> Семейно положение: {heroStats.familyAndRelationships.relationshipStatus}</p>
-                    <p> Очаквания и репутация: НЕ Е ГОТОВО</p>
+                    <p> Очаквания и репутация: {heroStats.familyAndRelationships.ownReputation}</p>
                     <p> Приятелства: НЕ Е ГОТОВО</p>
                     <p> Вражди: НЕ Е ГОТОВО</p>
                 </div>
