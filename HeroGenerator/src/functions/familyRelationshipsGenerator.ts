@@ -1,4 +1,4 @@
-import { age, familyAndRelationships, relationshipStatus, surrounding } from "../Interfaces/QuickHero";
+import { age, familyAndRelationships, origin, relationshipStatus, surrounding } from "../Interfaces/QuickHero";
 import { diceRollFunction } from "./utils";
 
 export function surroundingGenerator(): surrounding {
@@ -365,6 +365,28 @@ export function familyGenerator(): string {
     }
 
     return family
+}
+
+export function friendshipGenerator(surrounding:surrounding):string {
+    let friends = "";
+    const roll = diceRollFunction(100);
+    const surroundingsInitial:surrounding[] = ["дворянство","духовенство","интелигенция","простолюдие","подземен свят"];
+
+    if (roll >=1 && roll <=10) {
+        let rolledSurroundings:surrounding[] = [];
+        for( let i = 0 ; i<3 ; i++) {
+            let randomSurroundingIndex = diceRollFunction(surroundingsInitial.length-1);
+            let removedSurrounding = surroundingsInitial.splice(randomSurroundingIndex,1);
+            rolledSurroundings.push(removedSurrounding[0]);
+        }
+
+        const numberOfFriendsRoll = diceRollFunction(10);
+        const numberOfFriends = Math.floor((numberOfFriendsRoll+2)/2);
+
+    }
+
+
+    return friends;
 }
 
 export function familyAndRelationshipsCombined(age: age,): familyAndRelationships {
