@@ -447,7 +447,6 @@ export function appearanceGeneratorFunc(origin: origin): appearance {
 }
 
 export function featuresGenerator(): string {
-    debugger;
     let diceRoll = Math.floor(Math.random() * 100) + 1;
     let featuresArr: string[] = features;
     let featuresPresentArr: string[] = [];

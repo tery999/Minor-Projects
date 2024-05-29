@@ -1,9 +1,10 @@
-import { age, familyAndRelationships, origin, relationshipStatus, surrounding } from "../Interfaces/QuickHero";
-import { diceRollFunction } from "./utils";
+import { age, familyAndRelationships, relationshipStatus, surrounding } from "../Interfaces/QuickHero";
+import { friendsAllComb } from "../Interfaces/friendSurroundings";
+import { diceRollFunction, diceRollFunctionZero } from "./utils";
 
 export function surroundingGenerator(): surrounding {
     let surrounding: surrounding = "";
-    const roll = diceRollFunction(100);
+    const roll = diceRollFunction(10);
     switch (true) {
         case roll <= 10:
             surrounding = "дворянство"
@@ -319,74 +320,133 @@ export function familyGenerator(): string {
         } else if (roll >= 71 && roll <= 80) {
             family += "припознато извънбрачно дете."
         }
-    } else if (roll >=81 && roll <= 90) {
+    } else if (roll >= 81 && roll <= 90) {
         family = "Извънбрачно дете."
         const guardianRoll = diceRollFunction(100);
-            switch (true) {
-                case guardianRoll <= 20:
-                    family += "Настойници - чичо и леля";
-                    break;
+        switch (true) {
+            case guardianRoll <= 20:
+                family += "Настойници - чичо и леля";
+                break;
 
-                case guardianRoll <= 30:
-                    family += "Настойник - само чичо";
-                    break;
+            case guardianRoll <= 30:
+                family += "Настойник - само чичо";
+                break;
 
-                case guardianRoll <= 40:
-                    family += "Настойник - само леля.";
-                    break;
+            case guardianRoll <= 40:
+                family += "Настойник - само леля.";
+                break;
 
-                case guardianRoll <= 60:
-                    family += "Настойници - дядо и баба.";
-                    break;
+            case guardianRoll <= 60:
+                family += "Настойници - дядо и баба.";
+                break;
 
-                case guardianRoll <= 70:
-                    family += "Настойник - само дядо";
-                    break;
+            case guardianRoll <= 70:
+                family += "Настойник - само дядо";
+                break;
 
-                case guardianRoll <= 80:
-                    family += "Настойник - само баба";
-                    break;
+            case guardianRoll <= 80:
+                family += "Настойник - само баба";
+                break;
 
-                case guardianRoll <= 90:
-                    family += "наставници без родствена връзка";
-                    break;
+            case guardianRoll <= 90:
+                family += "наставници без родствена връзка";
+                break;
 
-                case guardianRoll <= 95:
-                    family += "наставник без родствена връзка";
-                    break;
+            case guardianRoll <= 95:
+                family += "наставник без родствена връзка";
+                break;
 
-                case guardianRoll <= 100:
-                    family += "наставница без родствена връзка";
-                    break;
-            }
+            case guardianRoll <= 100:
+                family += "наставница без родствена връзка";
+                break;
+        }
 
-    } else if ( roll >= 91 && roll <=100) {
+    } else if (roll >= 91 && roll <= 100) {
         family = "безпризорно дете"
     }
 
     return family
 }
 
-export function friendshipGenerator(surrounding:surrounding):string {
+export function friendshipGenerator(surrounding: surrounding): string {
     let friends = "";
     const roll = diceRollFunction(100);
-    const surroundingsInitial:surrounding[] = ["дворянство","духовенство","интелигенция","простолюдие","подземен свят"];
+    const surroundingsInitial: surrounding[] = ["дворянство", "духовенство", "интелигенция", "простолюдие", "подземен свят"];
 
-    if (roll >=1 && roll <=10) {
-        let rolledSurroundings:surrounding[] = [];
-        for( let i = 0 ; i<3 ; i++) {
-            let randomSurroundingIndex = diceRollFunction(surroundingsInitial.length-1);
-            let removedSurrounding = surroundingsInitial.splice(randomSurroundingIndex,1);
+    if (roll >= 1 && roll <= 10) {
+        let rolledSurroundings: surrounding[] = [];
+        for (let i = 0; i < 3; i++) {
+            let randomSurroundingIndex = diceRollFunctionZero(surroundingsInitial.length - 1);
+            let removedSurrounding = surroundingsInitial.splice(randomSurroundingIndex, 1);
             rolledSurroundings.push(removedSurrounding[0]);
         }
+        debugger;
 
         const numberOfFriendsRoll = diceRollFunction(10);
-        const numberOfFriends = Math.floor((numberOfFriendsRoll+2)/2);
+        const numberOfFriends = Math.floor((numberOfFriendsRoll + 2) / 2);
+
+        for (let i = numberOfFriends; i >= 0; i--) {
+            let surroundingFrRoll = diceRollFunctionZero(rolledSurroundings.length - 1)
+            let returnedFriend = friendsCombFunc(rolledSurroundings[surroundingFrRoll]);
+            friends += `${returnedFriend},`;
+        }
 
     }
 
 
     return friends;
+
+
+    function friendsCombFunc(optionalSurrounding: surrounding = ""): string {
+        let personCharacter: friendsAllComb = "";
+        const roll = diceRollFunction(100);
+
+        if (optionalSurrounding === "дворянство") {
+            switch (true) {
+                case roll <= 5:
+                    personCharacter = "могъщ владетел";
+                    break;
+
+                case roll <= 10:
+                    personCharacter = "високопоставен царедворец";
+                    break;
+
+                case roll <= 20:
+                    personCharacter = "изтъкнат сановник";
+                    break;
+
+                case roll <= 30:
+                    personCharacter = "дребен дворянин";
+                    break;
+
+                case roll <= 50:
+                    personCharacter = "сервилен прислужник";
+                    break;
+
+                case roll <= 70:
+                    personCharacter = "родолюбив воин";
+                    break;
+
+                case roll <= 80:
+                    personCharacter = "заслужил военачалник";
+                    break;
+
+                case roll <= 90:
+                    personCharacter = "безимотен аристократ";
+                    break;
+
+                case roll <= 95:
+                    personCharacter = "изпаднал земевладелец";
+                    break;
+
+                case roll <= 100:
+                    personCharacter = "обезнаследен изгнаник";
+                    break;
+            }
+        }
+
+        return personCharacter;
+    }
 }
 
 export function familyAndRelationshipsCombined(age: age,): familyAndRelationships {
@@ -397,6 +457,7 @@ export function familyAndRelationshipsCombined(age: age,): familyAndRelationship
     const relationshipStatus = relationshipStatusFunc(age)
     const ownReputation = reputationGenerator(surrounding);
     const family = familyGenerator();
+    const friendship = friendshipGenerator(surrounding);
 
 
     const familyAndRelationships: familyAndRelationships = {
@@ -407,7 +468,7 @@ export function familyAndRelationshipsCombined(age: age,): familyAndRelationship
         siblings: siblings,
         relationshipStatus: relationshipStatus,
         ownReputation: ownReputation,
-        // friendship: string,
+        friendship: friendship,
         // enemies: string
     }
 

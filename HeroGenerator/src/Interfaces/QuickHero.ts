@@ -35,7 +35,7 @@ export type familyAndRelationships = {
     siblings: string,
     relationshipStatus: relationshipStatus
     ownReputation: string,
-    // friendship: string,
+    friendship: string,
     // enemies: string
 
 }
