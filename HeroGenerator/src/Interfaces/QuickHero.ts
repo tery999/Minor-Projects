@@ -31,7 +31,7 @@ export type familyAndRelationships = {
     surrounding: surrounding,
     wealth: string,
     familyReputation: string,
-    // family: string,
+    family: string,
     siblings: string,
     relationshipStatus: relationshipStatus
     ownReputation: string,

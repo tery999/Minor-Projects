@@ -212,7 +212,7 @@ export function reputationGenerator(surrounding: surrounding): string {
         обкръжение имат повод да те помнят с нещо
         особено, така че към теб няма необичайно
         високи или ниски очаквания`
-    } else if ( roll>= 76) {
+    } else if (roll >= 76) {
         switch (true) {
             case surrounding === "дворянство":
                 reputation = `дворянство: които благородници не
@@ -249,6 +249,124 @@ export function reputationGenerator(surrounding: surrounding): string {
     return reputation;
 }
 
+export function familyGenerator(): string {
+    let family = "";
+    const roll = diceRollFunction(100);
+
+    if (roll <= 80) {
+        const familyRoll = diceRollFunction(100);
+        switch (true) {
+            case familyRoll <= 30:
+                family = "баща и майка.";
+                break;
+
+            case familyRoll <= 60:
+                family = "само баща.";
+                break;
+
+            case familyRoll <= 80:
+                family = "само майка.";
+                break;
+
+            case familyRoll <= 90:
+                family = "баща и мащеха.";
+                break;
+
+            case familyRoll <= 100:
+                family = "майка и доведен баща.";
+                break;
+        }
+
+        if (roll >= 51 && roll <= 70) {
+            const guardianRoll = diceRollFunction(100);
+            switch (true) {
+                case guardianRoll <= 20:
+                    family += "Настойници - чичо и леля";
+                    break;
+
+                case guardianRoll <= 30:
+                    family += "Настойник - само чичо";
+                    break;
+
+                case guardianRoll <= 40:
+                    family += "Настойник - само леля.";
+                    break;
+
+                case guardianRoll <= 60:
+                    family += "Настойници - дядо и баба.";
+                    break;
+
+                case guardianRoll <= 70:
+                    family += "Настойник - само дядо";
+                    break;
+
+                case guardianRoll <= 80:
+                    family += "Настойник - само баба";
+                    break;
+
+                case guardianRoll <= 90:
+                    family += "наставници без родствена връзка";
+                    break;
+
+                case guardianRoll <= 95:
+                    family += "наставник без родствена връзка";
+                    break;
+
+                case guardianRoll <= 100:
+                    family += "наставница без родствена връзка";
+                    break;
+            }
+        } else if (roll >= 71 && roll <= 80) {
+            family += "припознато извънбрачно дете."
+        }
+    } else if (roll >=81 && roll <= 90) {
+        family = "Извънбрачно дете."
+        const guardianRoll = diceRollFunction(100);
+            switch (true) {
+                case guardianRoll <= 20:
+                    family += "Настойници - чичо и леля";
+                    break;
+
+                case guardianRoll <= 30:
+                    family += "Настойник - само чичо";
+                    break;
+
+                case guardianRoll <= 40:
+                    family += "Настойник - само леля.";
+                    break;
+
+                case guardianRoll <= 60:
+                    family += "Настойници - дядо и баба.";
+                    break;
+
+                case guardianRoll <= 70:
+                    family += "Настойник - само дядо";
+                    break;
+
+                case guardianRoll <= 80:
+                    family += "Настойник - само баба";
+                    break;
+
+                case guardianRoll <= 90:
+                    family += "наставници без родствена връзка";
+                    break;
+
+                case guardianRoll <= 95:
+                    family += "наставник без родствена връзка";
+                    break;
+
+                case guardianRoll <= 100:
+                    family += "наставница без родствена връзка";
+                    break;
+            }
+
+    } else if ( roll >= 91 && roll <=100) {
+        family = "безпризорно дете"
+    }
+
+    return family
+}
+
 export function familyAndRelationshipsCombined(age: age,): familyAndRelationships {
     const surrounding: surrounding = surroundingGenerator();
     const wealth = wealthGenerator();
@@ -256,13 +374,14 @@ export function familyAndRelationshipsCombined(age: age,): familyAndRelationship
     const siblings = siblingsGenerator();
     const relationshipStatus = relationshipStatusFunc(age)
     const ownReputation = reputationGenerator(surrounding);
+    const family = familyGenerator();
 
 
     const familyAndRelationships: familyAndRelationships = {
         surrounding: surrounding,
         wealth: wealth,
         familyReputation: familyReputation,
-        // family: string,
+        family: family,
         siblings: siblings,
         relationshipStatus: relationshipStatus,
         ownReputation: ownReputation,
