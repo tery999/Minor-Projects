@@ -375,7 +375,7 @@ export function friendshipGenerator(surrounding: surrounding): string {
     const surroundingsInitial: surrounding[] = ["дворянство", "духовенство", "интелигенция", "простолюдие", "подземен свят"];
 
     if (roll >= 1 && roll <= 10) {
-        friends = "имаш множество верни другари в различни среди";
+        friends = "имаш множество верни другари в различни среди. ";
         let rolledSurroundings: surrounding[] = [];
         for (let i = 0; i < 3; i++) {
             let randomSurroundingIndex = diceRollFunctionZero(surroundingsInitial.length - 1);
@@ -384,7 +384,7 @@ export function friendshipGenerator(surrounding: surrounding): string {
         }
 
         const numberOfFriendsRoll = diceRollFunction(10);
-        const numberOfFriends = Math.floor((numberOfFriendsRoll + 2) / 2);
+        const numberOfFriends = Math.ceil((numberOfFriendsRoll + 2) / 2);
 
         for (let i = numberOfFriends; i >= 0; i--) {
             let surroundingFrRoll = diceRollFunctionZero(rolledSurroundings.length - 1)
@@ -392,6 +392,33 @@ export function friendshipGenerator(surrounding: surrounding): string {
             friends += `${returnedFriend},`;
         }
 
+    } else if ( roll >=11 && roll <= 40) {
+        friends = "имаш малко, но добри другари, винаги готови охотно да ти се притекат на помощ. ";
+        const numberOfFriendsRoll = diceRollFunction(10);
+        const numberOfFriends = Math.ceil(numberOfFriendsRoll/ 2);
+
+        for (let i = numberOfFriends; i>= 0 ; i--) {
+            let returnedFriend = friendsCombFunc(surrounding);
+            friends += `${returnedFriend},`;
+        }
+    } else if ( roll >= 41 && roll <=80) {
+        friends ="имаш малцина истински приятели. "
+        debugger;
+        let rolledSurroundings: surrounding[] = [];
+        for (let i = 0; i < 3; i++) {
+            let randomSurroundingIndex = diceRollFunctionZero(surroundingsInitial.length - 1);
+            let removedSurrounding = surroundingsInitial.splice(randomSurroundingIndex, 1);
+            rolledSurroundings.push(removedSurrounding[0]);
+        }
+
+        for (let i = 0; i < 3; i++) {
+            let returnedFriend = friendsCombFunc(rolledSurroundings[i]);
+            friends += `${returnedFriend},`;
+        }
+    } else if (roll >= 81) {
+        friends ="имаш един-единствен другар на света. "
+        let returnedFriend = friendsCombFunc(surrounding);
+        friends += `${returnedFriend}`;
     }
 
 
