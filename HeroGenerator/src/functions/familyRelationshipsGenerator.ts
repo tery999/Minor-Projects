@@ -377,16 +377,18 @@ export function friendshipGenerator(surrounding: surrounding): string {
     if (roll >= 1 && roll <= 10) {
         friends = "имаш множество верни другари в различни среди. ";
         let rolledSurroundings: surrounding[] = [];
-        for (let i = 0; i < 3; i++) {
+        let numberOfSurroundingsRoll = diceRollFunction(10);
+        let numberOfSurroundings = Math.ceil(numberOfSurroundingsRoll/2);
+        for (let i = 0; i < numberOfSurroundings; i++) {
             let randomSurroundingIndex = diceRollFunctionZero(surroundingsInitial.length - 1);
             let removedSurrounding = surroundingsInitial.splice(randomSurroundingIndex, 1);
             rolledSurroundings.push(removedSurrounding[0]);
         }
 
         const numberOfFriendsRoll = diceRollFunction(10);
-        const numberOfFriends = Math.ceil((numberOfFriendsRoll + 2) / 2);
+        const numberOfFriends = Math.ceil((numberOfFriendsRoll/ 2) + 3);
 
-        for (let i = numberOfFriends; i >= 0; i--) {
+        for (let i = numberOfFriends; i > 0; i--) {
             let surroundingFrRoll = diceRollFunctionZero(rolledSurroundings.length - 1)
             let returnedFriend = friendsCombFunc(rolledSurroundings[surroundingFrRoll]);
             friends += `${returnedFriend},`;
@@ -394,10 +396,8 @@ export function friendshipGenerator(surrounding: surrounding): string {
 
     } else if ( roll >=11 && roll <= 40) {
         friends = "имаш малко, но добри другари, винаги готови охотно да ти се притекат на помощ. ";
-        const numberOfFriendsRoll = diceRollFunction(10);
-        const numberOfFriends = Math.ceil(numberOfFriendsRoll/ 2);
 
-        for (let i = numberOfFriends; i>= 0 ; i--) {
+        for (let i = 0; i < 3 ; i++) {
             let returnedFriend = friendsCombFunc(surrounding);
             friends += `${returnedFriend},`;
         }
