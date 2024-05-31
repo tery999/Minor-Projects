@@ -1,5 +1,5 @@
 import { age, familyAndRelationships, relationshipStatus, surrounding } from "../Interfaces/QuickHero";
-import { DuhovenstvoComb, DvoryanstvoComb, IntelektComb, PodzemenComb, ProstolubComb, friendsAllComb } from "../Interfaces/friendSurroundings";
+import { DuhovenstvoComb, DvoryanstvoComb, IntelektComb, PodzemenComb, ProstolubComb, friendsFoesAllComb } from "../Interfaces/friendSurroundings";
 import { diceRollFunction, diceRollFunctionZero } from "./utils";
 
 export function surroundingGenerator(): surrounding {
@@ -390,7 +390,7 @@ export function friendshipGenerator(surrounding: surrounding): string {
 
         for (let i = numberOfFriends; i > 0; i--) {
             let surroundingFrRoll = diceRollFunctionZero(rolledSurroundings.length - 1)
-            let returnedFriend = friendsCombFunc(rolledSurroundings[surroundingFrRoll]);
+            let returnedFriend = friendsFoesCombFunc(rolledSurroundings[surroundingFrRoll]);
             friends += `${returnedFriend},`;
         }
 
@@ -398,12 +398,11 @@ export function friendshipGenerator(surrounding: surrounding): string {
         friends = "имаш малко, но добри другари, винаги готови охотно да ти се притекат на помощ. ";
 
         for (let i = 0; i < 3 ; i++) {
-            let returnedFriend = friendsCombFunc(surrounding);
+            let returnedFriend = friendsFoesCombFunc(surrounding);
             friends += `${returnedFriend},`;
         }
     } else if ( roll >= 41 && roll <=80) {
         friends ="имаш малцина истински приятели. "
-        debugger;
         let rolledSurroundings: surrounding[] = [];
         for (let i = 0; i < 3; i++) {
             let randomSurroundingIndex = diceRollFunctionZero(surroundingsInitial.length - 1);
@@ -412,247 +411,74 @@ export function friendshipGenerator(surrounding: surrounding): string {
         }
 
         for (let i = 0; i < 3; i++) {
-            let returnedFriend = friendsCombFunc(rolledSurroundings[i]);
+            let returnedFriend = friendsFoesCombFunc(rolledSurroundings[i]);
             friends += `${returnedFriend},`;
         }
     } else if (roll >= 81) {
         friends ="имаш един-единствен другар на света. "
-        let returnedFriend = friendsCombFunc(surrounding);
+        let returnedFriend = friendsFoesCombFunc(surrounding);
         friends += `${returnedFriend}`;
     }
 
 
     return friends;
+}
 
+export function foesGenerator(surrounding: surrounding):string {
+    let foes = "";
+    const roll = diceRollFunction(100);
+    const surroundingsInitial: surrounding[] = ["дворянство", "духовенство", "интелигенция", "простолюдие", "подземен свят"];
 
-    function friendsCombFunc(optionalSurrounding: surrounding = ""): string {
-        let personCharacter: friendsAllComb = "";
-        const roll = diceRollFunction(100);
-
-        if (optionalSurrounding === "дворянство") {
-            let dvorCharacter:DvoryanstvoComb = "";
-            switch (true) {
-                case roll <= 5:
-                    dvorCharacter = "могъщ владетел";
-                    break;
-
-                case roll <= 10:
-                    dvorCharacter = "високопоставен царедворец";
-                    break;
-
-                case roll <= 20:
-                    dvorCharacter = "изтъкнат сановник";
-                    break;
-
-                case roll <= 30:
-                    dvorCharacter = "дребен дворянин";
-                    break;
-
-                case roll <= 50:
-                    dvorCharacter = "сервилен прислужник";
-                    break;
-
-                case roll <= 70:
-                    dvorCharacter = "родолюбив воин";
-                    break;
-
-                case roll <= 80:
-                    dvorCharacter = "заслужил военачалник";
-                    break;
-
-                case roll <= 90:
-                    dvorCharacter = "безимотен аристократ";
-                    break;
-
-                case roll <= 95:
-                    dvorCharacter = "изпаднал земевладелец";
-                    break;
-
-                case roll <= 100:
-                    dvorCharacter = "обезнаследен изгнаник";
-                    break;
-            }
-            personCharacter = dvorCharacter;
-        } else if (optionalSurrounding === "духовенство") {
-            let duhCharacter:DuhovenstvoComb = "";
-            switch (true) {
-                case roll <= 5:
-                    duhCharacter = "прословут пророк";
-                    break;
-
-                case roll <= 10:
-                    duhCharacter = "духовен водач";
-                    break;
-
-                case roll <= 20:
-                    duhCharacter = "посветен духовник";
-                    break;
-
-                case roll <= 30:
-                    duhCharacter = "фанатичен проповедник";
-                    break;
-
-                case roll <= 50:
-                    duhCharacter = "новопостъпил послушник";
-                    break;
-
-                case roll <= 70:
-                    duhCharacter = "смирен монах";
-                    break;
-
-                case roll <= 80:
-                    duhCharacter = "набожен поклонник";
-                    break;
-
-                case roll <= 90:
-                    duhCharacter = "отлъчен еретик";
-                    break;
-
-                case roll <= 95:
-                    duhCharacter = "разгулен култист";
-                    break;
-
-                case roll <= 100:
-                    duhCharacter = "предан последовател";
-                    break;
-            }
-            personCharacter = duhCharacter;
-        } else if (optionalSurrounding === "интелигенция") {
-            let intCharacter:IntelektComb = "";
-            switch (true) {
-                case roll <= 5:
-                    intCharacter = "гениален философ" ;
-                    break;
-
-                case roll <= 10:
-                    intCharacter = "възхваляван трубадур";
-                    break;
-
-                case roll <= 20:
-                    intCharacter = "начетен изследовател";
-                    break;
-
-                case roll <= 30:
-                    intCharacter = "прочут писател";
-                    break;
-
-                case roll <= 50:
-                    intCharacter = "любознателен ученик";
-                    break;
-
-                case roll <= 70:
-                    intCharacter = "безизвестен артист";
-                    break;
-
-                case roll <= 80:
-                    intCharacter = "смахнат изобретател";
-                    break;
-
-                case roll <= 90:
-                    intCharacter = "отегчен писар";
-                    break;
-
-                case roll <= 95:
-                    intCharacter = "некадърен поет";
-                    break;
-
-                case roll <= 100:
-                    intCharacter = "самоук алхимик";
-                    break;
-            }
-            personCharacter = intCharacter;
-        } else if (optionalSurrounding === "простолюдие") {
-            let prostolubCharacter:ProstolubComb = "";
-            switch (true) {
-                case roll <= 5:
-                    prostolubCharacter = "заможен търговец" ;
-                    break;
-
-                case roll <= 10:
-                    prostolubCharacter = "умел занаятчия";
-                    break;
-
-                case roll <= 20:
-                    prostolubCharacter = "гостоприемен ханджия";
-                    break;
-
-                case roll <= 30:
-                    prostolubCharacter = "скромен рибар";
-                    break;
-
-                case roll <= 50:
-                    prostolubCharacter = "отруден земеделец";
-                    break;
-
-                case roll <= 70:
-                    prostolubCharacter = "прост пастир";
-                    break;
-
-                case roll <= 80:
-                    prostolubCharacter = "хрисим ловец";
-                    break;
-
-                case roll <= 90:
-                    prostolubCharacter = "непохватен чирак";
-                    break;
-
-                case roll <= 95:
-                    prostolubCharacter = "изстрадал мореплавател";
-                    break;
-
-                case roll <= 100:
-                    prostolubCharacter = "несретен скитник";
-                    break;
-            }
-            personCharacter = prostolubCharacter;
-        } else if (optionalSurrounding === "подземен свят") {
-            let podzemenCharacter:PodzemenComb = "";
-            switch (true) {
-                case roll <= 5:
-                    podzemenCharacter = "опасен разколник" ;
-                    break;
-
-                case roll <= 10:
-                    podzemenCharacter = "безскрупулен мошеник";
-                    break;
-
-                case roll <= 20:
-                    podzemenCharacter = "коварен шарлатанин";
-                    break;
-
-                case roll <= 30:
-                    podzemenCharacter = "изпечен контрабандист";
-                    break;
-
-                case roll <= 50:
-                    podzemenCharacter = "хитър измамник";
-                    break;
-
-                case roll <= 70:
-                    podzemenCharacter = "злонрав главорез";
-                    break;
-
-                case roll <= 80:
-                    podzemenCharacter = "опитен обирджия";
-                    break;
-
-                case roll <= 90:
-                    podzemenCharacter = "безмилостен пират";
-                    break;
-
-                case roll <= 95:
-                    podzemenCharacter = "неуловим крадец";
-                    break;
-
-                case roll <= 100:
-                    podzemenCharacter = "махленски скандалджия";
-                    break;
-            }
-            personCharacter = podzemenCharacter;
+    if (roll >=1 && roll <= 5) {
+        foes = "имаш множество люти врагове в различни среди. "
+        let rolledSurroundings: surrounding[] = [];
+        for (let i = 0; i < 3; i++) {
+            let randomSurroundingIndex = diceRollFunctionZero(surroundingsInitial.length - 1);
+            let removedSurrounding = surroundingsInitial.splice(randomSurroundingIndex, 1);
+            rolledSurroundings.push(removedSurrounding[0]);
         }
 
-        return personCharacter;
+        const numberOfFoesRoll = diceRollFunction(10);
+        const numberOfFoes = Math.ceil((numberOfFoesRoll/ 2) + 3);
+
+        for (let i = numberOfFoes; i > 0; i--) {
+            let surroundingFoesRoll = diceRollFunctionZero(rolledSurroundings.length - 1)
+            let returnedFoe= friendsFoesCombFunc(rolledSurroundings[surroundingFoesRoll]);
+            foes += `${returnedFoe},`;
+        }
+    } else if ( roll >= 6 && roll <= 20) {
+        foes = "имаш малко, но опасни врагове. "
+
+        let rolledSurroundings: surrounding[] = [];
+        let numberOfSurroundingsRoll = diceRollFunction(10);
+        let numberOfSurroundings = Math.ceil(numberOfSurroundingsRoll/2);
+        for (let i = 0; i < numberOfSurroundings; i++) {
+            let randomSurroundingIndex = diceRollFunctionZero(surroundingsInitial.length - 1);
+            let removedSurrounding = surroundingsInitial.splice(randomSurroundingIndex, 1);
+            rolledSurroundings.push(removedSurrounding[0]);
+        }
+
+        for (let i = 0; i<numberOfSurroundings; i++) {
+            let returnedFoe= friendsFoesCombFunc(rolledSurroundings[i]);
+            foes += `${returnedFoe},`
+        }
+
+    } else if ( roll >= 21 && roll <= 60) {
+        debugger;
+        foes = "имаш един-единствен противник, който обаче не е за подценяване. ";
+        const surrounding = diceRollFunctionZero(4);
+
+        let rolledSurroundings: surrounding[] = [];
+        let removedSurrounding = surroundingsInitial.splice(surrounding, 1);
+            rolledSurroundings.push(removedSurrounding[0]);
+
+            let returnedFoe = friendsFoesCombFunc(rolledSurroundings[0]);
+            foes += `${returnedFoe}.`
+    } else if ( roll >= 61 && roll <= 100) {
+        foes = "като по чудо, всъщност нямаш никакви врагове."
     }
+
+    return foes;
 }
 
 export function familyAndRelationshipsCombined(age: age,): familyAndRelationships {
@@ -664,6 +490,7 @@ export function familyAndRelationshipsCombined(age: age,): familyAndRelationship
     const ownReputation = reputationGenerator(surrounding);
     const family = familyGenerator();
     const friendship = friendshipGenerator(surrounding);
+    const foes = foesGenerator(surrounding);
 
 
     const familyAndRelationships: familyAndRelationships = {
@@ -675,8 +502,238 @@ export function familyAndRelationshipsCombined(age: age,): familyAndRelationship
         relationshipStatus: relationshipStatus,
         ownReputation: ownReputation,
         friendship: friendship,
-        // enemies: string
+        enemies: foes
     }
 
     return familyAndRelationships;
+}
+
+
+function friendsFoesCombFunc(optionalSurrounding: surrounding = ""): string {
+    let personCharacter: friendsFoesAllComb = "";
+    const roll = diceRollFunction(100);
+
+    if (optionalSurrounding === "дворянство") {
+        let dvorCharacter:DvoryanstvoComb = "";
+        switch (true) {
+            case roll <= 5:
+                dvorCharacter = "могъщ владетел";
+                break;
+
+            case roll <= 10:
+                dvorCharacter = "високопоставен царедворец";
+                break;
+
+            case roll <= 20:
+                dvorCharacter = "изтъкнат сановник";
+                break;
+
+            case roll <= 30:
+                dvorCharacter = "дребен дворянин";
+                break;
+
+            case roll <= 50:
+                dvorCharacter = "сервилен прислужник";
+                break;
+
+            case roll <= 70:
+                dvorCharacter = "родолюбив воин";
+                break;
+
+            case roll <= 80:
+                dvorCharacter = "заслужил военачалник";
+                break;
+
+            case roll <= 90:
+                dvorCharacter = "безимотен аристократ";
+                break;
+
+            case roll <= 95:
+                dvorCharacter = "изпаднал земевладелец";
+                break;
+
+            case roll <= 100:
+                dvorCharacter = "обезнаследен изгнаник";
+                break;
+        }
+        personCharacter = dvorCharacter;
+    } else if (optionalSurrounding === "духовенство") {
+        let duhCharacter:DuhovenstvoComb = "";
+        switch (true) {
+            case roll <= 5:
+                duhCharacter = "прословут пророк";
+                break;
+
+            case roll <= 10:
+                duhCharacter = "духовен водач";
+                break;
+
+            case roll <= 20:
+                duhCharacter = "посветен духовник";
+                break;
+
+            case roll <= 30:
+                duhCharacter = "фанатичен проповедник";
+                break;
+
+            case roll <= 50:
+                duhCharacter = "новопостъпил послушник";
+                break;
+
+            case roll <= 70:
+                duhCharacter = "смирен монах";
+                break;
+
+            case roll <= 80:
+                duhCharacter = "набожен поклонник";
+                break;
+
+            case roll <= 90:
+                duhCharacter = "отлъчен еретик";
+                break;
+
+            case roll <= 95:
+                duhCharacter = "разгулен култист";
+                break;
+
+            case roll <= 100:
+                duhCharacter = "предан последовател";
+                break;
+        }
+        personCharacter = duhCharacter;
+    } else if (optionalSurrounding === "интелигенция") {
+        let intCharacter:IntelektComb = "";
+        switch (true) {
+            case roll <= 5:
+                intCharacter = "гениален философ" ;
+                break;
+
+            case roll <= 10:
+                intCharacter = "възхваляван трубадур";
+                break;
+
+            case roll <= 20:
+                intCharacter = "начетен изследовател";
+                break;
+
+            case roll <= 30:
+                intCharacter = "прочут писател";
+                break;
+
+            case roll <= 50:
+                intCharacter = "любознателен ученик";
+                break;
+
+            case roll <= 70:
+                intCharacter = "безизвестен артист";
+                break;
+
+            case roll <= 80:
+                intCharacter = "смахнат изобретател";
+                break;
+
+            case roll <= 90:
+                intCharacter = "отегчен писар";
+                break;
+
+            case roll <= 95:
+                intCharacter = "некадърен поет";
+                break;
+
+            case roll <= 100:
+                intCharacter = "самоук алхимик";
+                break;
+        }
+        personCharacter = intCharacter;
+    } else if (optionalSurrounding === "простолюдие") {
+        let prostolubCharacter:ProstolubComb = "";
+        switch (true) {
+            case roll <= 5:
+                prostolubCharacter = "заможен търговец" ;
+                break;
+
+            case roll <= 10:
+                prostolubCharacter = "умел занаятчия";
+                break;
+
+            case roll <= 20:
+                prostolubCharacter = "гостоприемен ханджия";
+                break;
+
+            case roll <= 30:
+                prostolubCharacter = "скромен рибар";
+                break;
+
+            case roll <= 50:
+                prostolubCharacter = "отруден земеделец";
+                break;
+
+            case roll <= 70:
+                prostolubCharacter = "прост пастир";
+                break;
+
+            case roll <= 80:
+                prostolubCharacter = "хрисим ловец";
+                break;
+
+            case roll <= 90:
+                prostolubCharacter = "непохватен чирак";
+                break;
+
+            case roll <= 95:
+                prostolubCharacter = "изстрадал мореплавател";
+                break;
+
+            case roll <= 100:
+                prostolubCharacter = "несретен скитник";
+                break;
+        }
+        personCharacter = prostolubCharacter;
+    } else if (optionalSurrounding === "подземен свят") {
+        let podzemenCharacter:PodzemenComb = "";
+        switch (true) {
+            case roll <= 5:
+                podzemenCharacter = "опасен разколник" ;
+                break;
+
+            case roll <= 10:
+                podzemenCharacter = "безскрупулен мошеник";
+                break;
+
+            case roll <= 20:
+                podzemenCharacter = "коварен шарлатанин";
+                break;
+
+            case roll <= 30:
+                podzemenCharacter = "изпечен контрабандист";
+                break;
+
+            case roll <= 50:
+                podzemenCharacter = "хитър измамник";
+                break;
+
+            case roll <= 70:
+                podzemenCharacter = "злонрав главорез";
+                break;
+
+            case roll <= 80:
+                podzemenCharacter = "опитен обирджия";
+                break;
+
+            case roll <= 90:
+                podzemenCharacter = "безмилостен пират";
+                break;
+
+            case roll <= 95:
+                podzemenCharacter = "неуловим крадец";
+                break;
+
+            case roll <= 100:
+                podzemenCharacter = "махленски скандалджия";
+                break;
+        }
+        personCharacter = podzemenCharacter;
+    }
+
+    return personCharacter;
 }

@@ -40,15 +40,13 @@ export default function Quick() {
             relationshipStatus: "",
             ownReputation: "",
             friendship: "",
-            // enemies: string
+            enemies: ""
         }
     })
 
     useEffect(() => {
         const genderGen = genderGenerator();
         const origin = originGenerator("quick");
-        // const genderGen = "мъж";
-        // const origin = "Футарк";
         const society = societyGenerator();
         const age = ageGenerator();
         const name = nameGenerator(genderGen, origin, age);
@@ -108,7 +106,7 @@ export default function Quick() {
                     <p> Семейно положение: {heroStats.familyAndRelationships.relationshipStatus}</p>
                     <p> Очаквания и репутация: {heroStats.familyAndRelationships.ownReputation}</p>
                     <p> Приятелства: {heroStats.familyAndRelationships.friendship}</p>
-                    <p> Вражди: НЕ Е ГОТОВО</p>
+                    <p> Вражди: {heroStats.familyAndRelationships.enemies}</p>
                 </div>
             </div>
             {/* surrounding: string,

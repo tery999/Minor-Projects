@@ -13,4 +13,4 @@ export type ProstolubComb = "" |"заможен търговец"|"умел за
 export type PodzemenComb = "" |"опасен разколник"|"безскрупулен мошеник"|"коварен шарлатанин"|"изпечен контрабандист"
 |"хитър измамник"|"злонрав главорез"|"опитен обирджия"|"безмилостен пират"|"неуловим крадец"|"махленски скандалджия"
 
-export type friendsAllComb = DvoryanstvoComb | DuhovenstvoComb | IntelektComb | ProstolubComb | PodzemenComb
+export type friendsFoesAllComb = DvoryanstvoComb | DuhovenstvoComb | IntelektComb | ProstolubComb | PodzemenComb
