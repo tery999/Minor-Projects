@@ -1,4 +1,5 @@
 import { calling, character } from "../InformationObjects/worldView";
+import { aims, concerns } from "../Interfaces/QuickHero";
 import { diceRollFunction } from "./utils";
 
 export function characterGenerator(): string {
@@ -13,13 +14,13 @@ export function callingGenerator(): string {
     return callingPick;
 }
 
-export function aimsGenerator(): string {
-    let aims = "";
+export function aimsGenerator(): aims {
+    let aims:aims = "";
     const roll = diceRollFunction(100);
 
     switch (true) {
         case roll <= 10:
-            aims = "отмъщение";
+            aims = "сладко отмъщение";
             break;
 
         case roll <= 20:
@@ -31,7 +32,7 @@ export function aimsGenerator(): string {
             break;
 
         case roll <= 40:
-            aims = "просветление";
+            aims = "дълбоко просветление";
             break;
 
         case roll <= 50:
@@ -62,13 +63,13 @@ export function aimsGenerator(): string {
     return aims;
 }
 
-export function concernsGenerator(): string {
-    let concerns = "";
+export function concernsGenerator(): concerns {
+    let concerns:concerns = "";
     const roll = diceRollFunction(100);
 
     switch (true) {
         case roll <= 10:
-            concerns = "несправедливост";
+            concerns = "горчива несправедливост";
             break;
 
         case roll <= 20:
@@ -80,11 +81,11 @@ export function concernsGenerator(): string {
             break;
 
         case roll <= 40:
-            concerns = "заблуждение";
+            concerns = "дълбока заблуда";
             break;
 
         case roll <= 50:
-            concerns = "провал в начинание";
+            concerns = "провал в значимо начинание";
             break;
 
         case roll <= 60:
@@ -92,7 +93,7 @@ export function concernsGenerator(): string {
             break;
 
         case roll <= 70:
-            concerns = "предателство";
+            concerns = "неочаквано предателство";
             break;
 
         case roll <= 80:
