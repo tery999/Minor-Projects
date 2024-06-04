@@ -490,123 +490,135 @@ export function rumorGenerator(): string {
     const diceRoll = diceRollFunction(100);
 
     if (diceRoll <= 60) {
-        rumorsAll = "за теб като по чудо не се носят никакви слухове"
+        rumorsAll = "за теб като по чудо не се носят никакви слухове."
         return rumorsAll;
-    } else if (diceRoll >= 61 && diceRoll <= 90) {
+    } else if (diceRoll >= 61 && diceRoll <= 100) {
         let gossipersRoll = diceRollFunction(100);
         let rumorsRoll = diceRollFunction(100);
         let truthfullnesRoll = diceRollFunction(100);
+        rumorsAll = "Носи се любопитна мълва по твой адрес. ";
+        let numberOfRumors = 1;
 
-        switch (true) {
-            case gossipersRoll <= 10:
-                gossipers = "Прислужниците на неизвестен дребен благородник дочули мълви, според които";
-                break;
-
-            case gossipersRoll <= 20:
-                gossipers = "Местна кръчмарка научила от пияните си посетители, че";
-                break;
-
-            case gossipersRoll <= 30:
-                gossipers = "Няколко улични хлапета били чути да пеят детински рими, според които";
-                break;
-
-            case gossipersRoll <= 40:
-                gossipers = "По думите на стар местен рибар те е чул да казваш, че";
-                break;
-
-            case gossipersRoll <= 50:
-                gossipers = "Неколцина местни стражи били твърдо убедени, че";
-                break;
-
-            case gossipersRoll <= 60:
-                gossipers = "Някакъв странстващ рицар се представял с твоето име и разправял, че";
-                break;
-
-            case gossipersRoll <= 70:
-                gossipers = "Според родствениците ти";
-                break;
-
-            case gossipersRoll <= 80:
-                gossipers = "Един от чираците в някаква работилница разказал на останалите, че";
-                break;
-
-            case gossipersRoll <= 90:
-                gossipers = "Две пътуващи ясновидки били чути да обсъждат, че";
-                break;
-
-            case gossipersRoll <= 100:
-                gossipers = "Група местни поети и музиканти написали песен, според която";
-                break;
-
+        if (diceRoll >= 91 && diceRoll <= 100) {    
+            rumorsAll = "Зад гърба ти се говорят какви ли не невероятни и небивали истории по твой адрес. "
+            numberOfRumors = Math.ceil( diceRollFunction(10) /2 );
         }
+        for (let i = 0; i < numberOfRumors; i++) {
+            gossipersRoll = diceRollFunction(100);
+            rumorsRoll = diceRollFunction(100);
+            truthfullnesRoll = diceRollFunction(100);
+            switch (true) {
+                case gossipersRoll <= 10:
+                    gossipers = "Прислужниците на неизвестен дребен благородник дочули мълви, според които";
+                    break;
 
-        switch (true) {
-            case rumorsRoll <= 10:
-                rumors = "не понасяш сирильци и се присмиваш над смешните им суеверия";
-                break;
+                case gossipersRoll <= 20:
+                    gossipers = "Местна кръчмарка научила от пияните си посетители, че";
+                    break;
 
-            case rumorsRoll <= 20:
-                rumors = "ненавиждаш езичници, независимо откъде са";
-                break;
+                case gossipersRoll <= 30:
+                    gossipers = "Няколко улични хлапета били чути да пеят детински рими, според които";
+                    break;
 
-            case rumorsRoll <= 30:
-                rumors = "понякога разговаряш с привидения";
-                break;
+                case gossipersRoll <= 40:
+                    gossipers = "По думите на стар местен рибар те е чул да казваш, че";
+                    break;
 
-            case rumorsRoll <= 40:
-                rumors = "страниш от латинейци заради прекомерната им набожност";
-                break;
+                case gossipersRoll <= 50:
+                    gossipers = "Неколцина местни стражи били твърдо убедени, че";
+                    break;
 
-            case rumorsRoll <= 50:
-                rumors = "не харесваш надменните огамци и ги отбягваш при всяка възможност";
-                break;
+                case gossipersRoll <= 60:
+                    gossipers = "Някакъв странстващ рицар се представял с твоето име и разправял, че";
+                    break;
 
-            case rumorsRoll <= 60:
-                rumors = "нямаш доверие на хабилеанци и не искаш и да имаш за нищо на света";
-                break;
+                case gossipersRoll <= 70:
+                    gossipers = "Според родствениците ти";
+                    break;
 
-            case rumorsRoll <= 65:
-                rumors = "смяташ всички орхонгци за диваци";
-                break;
+                case gossipersRoll <= 80:
+                    gossipers = "Един от чираците в някаква работилница разказал на останалите, че";
+                    break;
 
-            case rumorsRoll <= 70:
-                rumors = "смяташ всички футарки за диваци";
-                break;
+                case gossipersRoll <= 90:
+                    gossipers = "Две пътуващи ясновидки били чути да обсъждат, че";
+                    break;
 
-            case rumorsRoll <= 80:
-                rumors = "мразиш префърцунените благородници и самодоволните им физиономии";
-                break;
+                case gossipersRoll <= 100:
+                    gossipers = "Група местни поети и музиканти написали песен, според която";
+                    break;
 
-            case rumorsRoll <= 85:
-                rumors = "имаш предразсъдъци към духовници";
-                break;
+            }
 
-            case rumorsRoll <= 90:
-                rumors = "ненавиждаш артисти";
-                break;
+            switch (true) {
+                case rumorsRoll <= 10:
+                    rumors = "не понасяш сирильци и се присмиваш над смешните им суеверия";
+                    break;
 
-            case rumorsRoll <= 100:
-                rumors = "познаваш отблизо съмнителни лица и дори бегълци от закона";
-                break;
+                case rumorsRoll <= 20:
+                    rumors = "ненавиждаш езичници, независимо откъде са";
+                    break;
 
-        }
+                case rumorsRoll <= 30:
+                    rumors = "понякога разговаряш с привидения";
+                    break;
 
-        switch(true) {
-            case truthfullnesRoll<= 25:
-                truthfullnes = "но уви, това са само сплетни и измислици, в които няма и капчица истина."
-                break;
+                case rumorsRoll <= 40:
+                    rumors = "страниш от латинейци заради прекомерната им набожност";
+                    break;
 
-                case truthfullnesRoll<= 75:
-                truthfullnes = "ала това е само отчасти вярно и си има обяснение. Явно има недоразумение."
-                break;
+                case rumorsRoll <= 50:
+                    rumors = "не харесваш надменните огамци и ги отбягваш при всяка възможност";
+                    break;
 
-                case truthfullnesRoll<= 100:
-                truthfullnes = "и това е самата истина. Как ли се е разчуло?"
-                break;
+                case rumorsRoll <= 60:
+                    rumors = "нямаш доверие на хабилеанци и не искаш и да имаш за нищо на света";
+                    break;
+
+                case rumorsRoll <= 65:
+                    rumors = "смяташ всички орхонгци за диваци";
+                    break;
+
+                case rumorsRoll <= 70:
+                    rumors = "смяташ всички футарки за диваци";
+                    break;
+
+                case rumorsRoll <= 80:
+                    rumors = "мразиш префърцунените благородници и самодоволните им физиономии";
+                    break;
+
+                case rumorsRoll <= 85:
+                    rumors = "имаш предразсъдъци към духовници";
+                    break;
+
+                case rumorsRoll <= 90:
+                    rumors = "ненавиждаш артисти";
+                    break;
+
+                case rumorsRoll <= 100:
+                    rumors = "познаваш отблизо съмнителни лица и дори бегълци от закона";
+                    break;
+
+            }
+
+            switch (true) {
+                case truthfullnesRoll <= 25:
+                    truthfullnes = "но уви, това са само сплетни и измислици, в които няма и капчица истина."
+                    break;
+
+                case truthfullnesRoll <= 75:
+                    truthfullnes = "ала това е само отчасти вярно и си има обяснение. Явно има недоразумение."
+                    break;
+
+                case truthfullnesRoll <= 100:
+                    truthfullnes = "и това е самата истина. Как ли се е разчуло?"
+                    break;
+            }
+            rumorsAll += `${gossipers} ${rumors} ${truthfullnes}`;
         }
 
     }
-    rumorsAll = `${gossipers} ${rumors} ${truthfullnes}`;
+    
     return rumorsAll;
 
 }
