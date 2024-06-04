@@ -459,7 +459,7 @@ export function foesGenerator(surrounding: surrounding): string {
         const numberOfFoes = Math.ceil((numberOfFoesRoll / 2));
 
         for (let i = 0; i < numberOfFoes; i++) {
-            let returnedFoe = friendsFoesCombFunc(rolledSurroundings[i]);
+            let returnedFoe = friendsFoesCombFunc(rolledSurroundings[0]);
             foes += `${returnedFoe},`
         }
 
