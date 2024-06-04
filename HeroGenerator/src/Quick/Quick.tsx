@@ -40,7 +40,8 @@ export default function Quick() {
             relationshipStatus: "",
             ownReputation: "",
             friendship: "",
-            enemies: ""
+            enemies: "",
+            rumors: ""
         }
     })
 
@@ -107,6 +108,7 @@ export default function Quick() {
                     <p> Очаквания и репутация: {heroStats.familyAndRelationships.ownReputation}</p>
                     <p> Приятелства: {heroStats.familyAndRelationships.friendship}</p>
                     <p> Вражди: {heroStats.familyAndRelationships.enemies}</p>
+                    <p> Слухове: {heroStats.familyAndRelationships.rumors}</p>
                 </div>
             </div>
             {/* surrounding: string,
