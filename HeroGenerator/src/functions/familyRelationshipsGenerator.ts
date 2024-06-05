@@ -1,6 +1,7 @@
-import { age, familyAndRelationships, relationshipStatus, surrounding } from "../Interfaces/QuickHero";
+import { age, familyAndRelationships, mechanicStats, relationshipStatus, surrounding } from "../Interfaces/QuickHero";
 import { DuhovenstvoComb, DvoryanstvoComb, IntelektComb, PodzemenComb, ProstolubComb, friendsFoesAllComb } from "../Interfaces/friendSurroundings";
 import { gossipers, rumors, truthfullnes } from "../Interfaces/rumors";
+import { MechStatNames, mechStatLowHigh } from "./mechStatGenerator";
 import { diceRollFunction, diceRollFunctionZero } from "./utils";
 
 export function surroundingGenerator(): surrounding {
@@ -448,7 +449,6 @@ export function foesGenerator(surrounding: surrounding): string {
             foes += `${returnedFoe},`;
         }
     } else if (roll >= 6 && roll <= 20) {
-        debugger;
         foes = "имаш малко, но опасни врагове. "
         let rolledSurroundings: surrounding[] = [];
         let randomSurroundingIndex = diceRollFunctionZero(surroundingsInitial.length - 1);
@@ -464,7 +464,6 @@ export function foesGenerator(surrounding: surrounding): string {
         }
 
     } else if (roll >= 21 && roll <= 60) {
-        debugger;
         foes = "имаш един-единствен противник, който обаче не е за подценяване. ";
         const surrounding = diceRollFunctionZero(4);
 
@@ -623,7 +622,29 @@ export function rumorGenerator(): string {
 
 }
 
-export function familyAndRelationshipsCombined(age: age,): familyAndRelationships {
+export function DiffAndAch(low:MechStatNames , high:MechStatNames) {
+    const lowHighArr:MechStatNames[] = [low, high];
+    const firstRow = diceRollFunction(100);
+    const secondRow = diceRollFunction(100);
+    let DiffAchString = "";
+
+    for ( let i = 0 ; i < 2 ; i++) {
+
+        if (lowHighArr[i] === "Крепкост") {
+            switch(true) {
+                case firstRow <= 5:
+                    DiffAchString += ""
+            }
+        }
+    }
+
+    
+
+
+
+}
+
+export function familyAndRelationshipsCombined(age: age, mechStat:mechanicStats): familyAndRelationships {
     const surrounding: surrounding = surroundingGenerator();
     const wealth = wealthGenerator();
     const familyReputation = familyReputationGenerator();
@@ -634,6 +655,9 @@ export function familyAndRelationshipsCombined(age: age,): familyAndRelationship
     const friendship = friendshipGenerator(surrounding);
     const foes = foesGenerator(surrounding);
     const rumors = rumorGenerator();
+    const  [low, high] = mechStatLowHigh(mechStat);
+    const difficultiesAndAchievements = DiffAndAch(low, high);
+  
 
 
     const familyAndRelationships: familyAndRelationships = {

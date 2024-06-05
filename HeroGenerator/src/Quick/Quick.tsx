@@ -7,6 +7,7 @@ import { nameGenerator } from "../functions/nameGeneratorFunc"
 import { ageGenerator, appearanceGeneratorFunc, bodyTypesGenerator, featuresGenerator } from "../functions/appearanceGenerator"
 import { aimsGenerator, callingGenerator, characterGenerator, concernsGenerator } from "../functions/worldViewGenerator"
 import { familyAndRelationshipsCombined } from "../functions/familyRelationshipsGenerator"
+import { mechStatGenerator } from "../functions/mechStatGenerator"
 
 export default function Quick() {
     const [heroStats, setHeroStats] = useState<QuickHero>({
@@ -42,6 +43,13 @@ export default function Quick() {
             friendship: "",
             enemies: "",
             rumors: ""
+        },
+        mechanicalStats: {
+            strength: 0,
+            confidence: 0,
+            ability: 0,
+            perception: 0
+
         }
     })
 
@@ -58,14 +66,15 @@ export default function Quick() {
         const calling = callingGenerator();
         const aims = aimsGenerator();
         const concerns = concernsGenerator();
-        const familyAndRelationships = familyAndRelationshipsCombined(age)
+        const mechanicalStats = mechStatGenerator();
+        const familyAndRelationships = familyAndRelationshipsCombined(age, mechanicalStats);
         setHeroStats((prev) => ({
             ...prev, gender: genderGen, origin: origin,
             society: society, name: name, age: age, appearance: appearance,
             features: features, body: body,
             worldView: {
                 character, calling, aims, concerns
-            }, familyAndRelationships
+            }, familyAndRelationships , mechanicalStats
         }))
     }, [])
 
@@ -109,6 +118,13 @@ export default function Quick() {
                     <p> Приятелства: {heroStats.familyAndRelationships.friendship}</p>
                     <p> Вражди: {heroStats.familyAndRelationships.enemies}</p>
                     <p> Слухове: {heroStats.familyAndRelationships.rumors}</p>
+                </div>
+                <div>
+                    <h2>Механични измерения</h2>
+                    <p> Крепкост: {heroStats.mechanicalStats.strength}</p>
+                    <p> Увереност: {heroStats.mechanicalStats.confidence}</p>
+                    <p> Способност: {heroStats.mechanicalStats.ability}</p>
+                    <p> Възприятие: {heroStats.mechanicalStats.perception}</p>
                 </div>
             </div>
             {/* surrounding: string,

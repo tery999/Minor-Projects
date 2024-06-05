@@ -47,6 +47,13 @@ export type familyAndRelationships = {
 
 }
 
+export type mechanicStats = {
+    strength: number,
+    confidence: number,
+    ability: number,
+    perception: number
+}
+
 export interface QuickHero {
     gender: "мъж" | "жена" | "",
     origin: origin,
@@ -57,5 +64,7 @@ export interface QuickHero {
     features: string,
     body: body,
     worldView:worldView,
-    familyAndRelationships: familyAndRelationships
+    familyAndRelationships: familyAndRelationships,
+    mechanicalStats:mechanicStats
 }
+
