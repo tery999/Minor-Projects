@@ -1,13 +1,13 @@
 import "./Quick.css"
 import { useEffect, useState } from "react"
-import { QuickHero } from "../Interfaces/QuickHero"
+import { QuickHero } from "../../Interfaces/QuickHero"
 import { Link } from "react-router-dom"
-import { genderGenerator, originGenerator, societyGenerator } from "../functions/GeneratorFunc"
-import { nameGenerator } from "../functions/nameGeneratorFunc"
-import { ageGenerator, appearanceGeneratorFunc, bodyTypesGenerator, featuresGenerator } from "../functions/appearanceGenerator"
-import { aimsGenerator, callingGenerator, characterGenerator, concernsGenerator } from "../functions/worldViewGenerator"
-import { familyAndRelationshipsCombined } from "../functions/familyRelationshipsGenerator"
-import { mechStatGenerator } from "../functions/mechStatGenerator"
+import { genderGenerator, originGenerator, societyGenerator } from "../../functions/GeneratorFunc"
+import { nameGenerator } from "../../functions/nameGeneratorFunc"
+import { ageGenerator, appearanceGeneratorFunc, bodyTypesGenerator, featuresGenerator } from "../../functions/appearanceGenerator"
+import { aimsGenerator, callingGenerator, characterGenerator, concernsGenerator } from "../../functions/worldViewGenerator"
+import { familyAndRelationshipsCombined } from "../../functions/familyRelationshipsGenerator"
+import { mechStatGenerator } from "../../functions/mechStatGenerator"
 
 export default function Quick() {
     const [heroStats, setHeroStats] = useState<QuickHero>({
