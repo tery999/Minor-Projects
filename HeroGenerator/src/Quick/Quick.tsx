@@ -42,7 +42,8 @@ export default function Quick() {
             ownReputation: "",
             friendship: "",
             enemies: "",
-            rumors: ""
+            rumors: "",
+            difficultiesAndAchievements: ""
         },
         mechanicalStats: {
             strength: 0,
@@ -118,6 +119,7 @@ export default function Quick() {
                     <p> Приятелства: {heroStats.familyAndRelationships.friendship}</p>
                     <p> Вражди: {heroStats.familyAndRelationships.enemies}</p>
                     <p> Слухове: {heroStats.familyAndRelationships.rumors}</p>
+                    <p> Трудности и Постижения: {heroStats.familyAndRelationships.difficultiesAndAchievements}</p>
                 </div>
                 <div>
                     <h2>Механични измерения</h2>

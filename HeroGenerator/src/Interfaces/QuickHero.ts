@@ -44,6 +44,7 @@ export type familyAndRelationships = {
     friendship: string,
     enemies: string,
     rumors: string
+    difficultiesAndAchievements: string
 
 }
 

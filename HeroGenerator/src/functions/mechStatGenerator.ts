@@ -26,4 +26,4 @@ export function mechStatLowHigh (mechStats:mechanicStats) {
     return [low as MechStatNames,high as MechStatNames];
 }
 
-export type MechStatNames = ""|"Крепкост"|"Увереност"|"Способност"|"Възприятие";
+export type MechStatNames = ""|"strength"|"confidence"|"ability"|"perception";

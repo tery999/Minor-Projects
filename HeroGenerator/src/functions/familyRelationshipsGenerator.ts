@@ -1,3 +1,4 @@
+import { Krepkost, Sposobnost, Uverenost, Vazpriyatie } from "../InformationObjects/DifficultiesAchievenemntTypes";
 import { age, familyAndRelationships, mechanicStats, relationshipStatus, surrounding } from "../Interfaces/QuickHero";
 import { DuhovenstvoComb, DvoryanstvoComb, IntelektComb, PodzemenComb, ProstolubComb, friendsFoesAllComb } from "../Interfaces/friendSurroundings";
 import { gossipers, rumors, truthfullnes } from "../Interfaces/rumors";
@@ -426,7 +427,7 @@ export function friendshipGenerator(surrounding: surrounding): string {
     return friends;
 }
 
-export function foesGenerator(surrounding: surrounding): string {
+export function foesGenerator(): string {
     let foes = "";
     const roll = diceRollFunction(100);
     const surroundingsInitial: surrounding[] = ["дворянство", "духовенство", "интелигенция", "простолюдие", "подземен свят"];
@@ -498,9 +499,9 @@ export function rumorGenerator(): string {
         rumorsAll = "Носи се любопитна мълва по твой адрес. ";
         let numberOfRumors = 1;
 
-        if (diceRoll >= 91 && diceRoll <= 100) {    
+        if (diceRoll >= 91 && diceRoll <= 100) {
             rumorsAll = "Зад гърба ти се говорят какви ли не невероятни и небивали истории по твой адрес. "
-            numberOfRumors = Math.ceil( diceRollFunction(10) /2 );
+            numberOfRumors = Math.ceil(diceRollFunction(10) / 2);
         }
         for (let i = 0; i < numberOfRumors; i++) {
             gossipersRoll = diceRollFunction(100);
@@ -617,34 +618,139 @@ export function rumorGenerator(): string {
         }
 
     }
-    
+
     return rumorsAll;
 
 }
 
-export function DiffAndAch(low:MechStatNames , high:MechStatNames) {
-    const lowHighArr:MechStatNames[] = [low, high];
-    const firstRow = diceRollFunction(100);
-    const secondRow = diceRollFunction(100);
+export function DiffAndAch(low: MechStatNames, high: MechStatNames): string {
+    debugger;
+    const lowHighArr: MechStatNames[] = [low, high];
     let DiffAchString = "";
 
-    for ( let i = 0 ; i < 2 ; i++) {
+    for (let i = 0; i < 2; i++) {
+        let firstRow = diceRollFunction(100);
 
-        if (lowHighArr[i] === "Крепкост") {
-            switch(true) {
+        if (lowHighArr[i] === "strength" ) {
+            let krepkost: Krepkost = "";
+            switch (true) {
                 case firstRow <= 5:
-                    DiffAchString += ""
+                    krepkost = "Решаваща победа"
+                    break;
+
+                case firstRow <= 20:
+                    krepkost = "Надвиване на опасен противник"
+                    break;
+
+                case firstRow <= 60:
+                    krepkost = "Укрепване на крехко здраве"
+                    break;
+
+                case firstRow <= 80:
+                    krepkost = "Преживяване на мор"
+                    break;
+
+                case firstRow <= 95:
+                    krepkost = "Оцеляване след нашествие"
+                    break;
+
+                case firstRow <= 100:
+                    krepkost = "Дълго пътешествие"
+                    break;
             }
+            DiffAchString += ` ${krepkost} .`
+        } else if (lowHighArr[i] === "confidence") {
+            let uverenost: Uverenost = "";
+            switch (true) {
+                case firstRow <= 5:
+                    uverenost = "Надхитряване на противник"
+                    break;
+
+                case firstRow <= 20:
+                    uverenost = "Отхвърляне на неизгодна спогодба"
+                    break;
+
+                case firstRow <= 60:
+                    uverenost = "Спечелване на нечие доверие"
+                    break;
+
+                case firstRow <= 80:
+                    uverenost = "Запазване на вяра въпреки изпитания"
+                    break;
+
+                case firstRow <= 95:
+                    uverenost = "Приятелството на могъщ владетел"
+                    break;
+
+                case firstRow <= 100:
+                    uverenost = "Превъзмогване на предателство"
+                    break;
+            }
+            DiffAchString += ` ${uverenost} .`
+        } else if (lowHighArr[i] === "ability") {
+            let sposobnost: Sposobnost = "";
+            switch (true) {
+                case firstRow <= 5:
+                    sposobnost = "Усвояване на занаят"
+                    break;
+
+                case firstRow <= 20:
+                    sposobnost = "Придобиване на лечителски опит"
+                    break;
+
+                case firstRow <= 60:
+                    sposobnost = "Завършване на изтощително обучение"
+                    break;
+
+                case firstRow <= 80:
+                    sposobnost = "Развиване на талант за произволно изкуство"
+                    break;
+
+                case firstRow <= 95:
+                    sposobnost = "Спасение от зла беда"
+                    break;
+
+                case firstRow <= 100:
+                    sposobnost = "Плодороден труд"
+                    break;
+            }
+            DiffAchString += ` ${sposobnost} .`
+        } else if (lowHighArr[i] === "perception") {
+            let vazpriyatie: Vazpriyatie = "";
+            switch (true) {
+                case firstRow <= 5:
+                    vazpriyatie = "Разтълкуване на поличба"
+                    break;
+
+                case firstRow <= 20:
+                    vazpriyatie = "Събиране на колекция от ценни писания"
+                    break;
+
+                case firstRow <= 60:
+                    vazpriyatie = "Постигане на житейска мъдрост"
+                    break;
+
+                case firstRow <= 80:
+                    vazpriyatie = "Подробно опознаване на природата"
+                    break;
+
+                case firstRow <= 95:
+                    vazpriyatie = "Наставления от просветен философ"
+                    break;
+
+                case firstRow <= 100:
+                    vazpriyatie = "Усвояване на тайно учение"
+                    break;
+            }
+            DiffAchString += ` ${vazpriyatie} .`
         }
     }
 
-    
-
-
+    return DiffAchString;
 
 }
 
-export function familyAndRelationshipsCombined(age: age, mechStat:mechanicStats): familyAndRelationships {
+export function familyAndRelationshipsCombined(age: age, mechStat: mechanicStats): familyAndRelationships {
     const surrounding: surrounding = surroundingGenerator();
     const wealth = wealthGenerator();
     const familyReputation = familyReputationGenerator();
@@ -653,11 +759,11 @@ export function familyAndRelationshipsCombined(age: age, mechStat:mechanicStats)
     const ownReputation = reputationGenerator(surrounding);
     const family = familyGenerator();
     const friendship = friendshipGenerator(surrounding);
-    const foes = foesGenerator(surrounding);
+    const foes = foesGenerator();
     const rumors = rumorGenerator();
-    const  [low, high] = mechStatLowHigh(mechStat);
+    const [low, high] = mechStatLowHigh(mechStat);
     const difficultiesAndAchievements = DiffAndAch(low, high);
-  
+
 
 
     const familyAndRelationships: familyAndRelationships = {
@@ -670,7 +776,8 @@ export function familyAndRelationshipsCombined(age: age, mechStat:mechanicStats)
         ownReputation: ownReputation,
         friendship: friendship,
         enemies: foes,
-        rumors: rumors
+        rumors: rumors,
+        difficultiesAndAchievements: difficultiesAndAchievements
     }
 
     return familyAndRelationships;

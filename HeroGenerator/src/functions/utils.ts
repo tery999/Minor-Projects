@@ -9,7 +9,6 @@ export function diceRollFunctionZero (topNumber:number):number {
 }
 
 export function rollFiveByTen():number {
-    debugger;
     let diceRoll = 0;
     for (let i = 0; i < 5 ; i ++) {
         let curRow = diceRollFunction(10);
