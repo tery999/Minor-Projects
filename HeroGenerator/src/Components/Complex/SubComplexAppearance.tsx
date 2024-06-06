@@ -15,7 +15,7 @@ export function SubComplexAppearance(props: prop) {
     return (
         <div>
             <p>{name}: {value} </p>
-            <button onClick={() => changeStatsFunction( {appearance: {...reRollResult}} )}>but</button>
+            <button onClick={() => changeStatsFunction( reRollResult )}>but</button>
         </div>
     )
 }

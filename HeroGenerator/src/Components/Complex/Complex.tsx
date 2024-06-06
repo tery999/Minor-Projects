@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react"
-import { QuickHero } from "../../Interfaces/QuickHero"
+import { QuickHero, appearance } from "../../Interfaces/QuickHero"
 import { SubComplex } from "./SubComplex"
 import { genderGenerator, originGenerator, societyGenerator } from "../../functions/GeneratorFunc"
 import { ageGenerator, colorGenerator } from "../../functions/appearanceGenerator"
@@ -60,13 +60,22 @@ export function Complex() {
         })
     } ,[])
 
-    const changeStatsNestedFunction = useCallback ( (changedData: any) => {
+    const changeStatsNestedFunction = useCallback ( (changedData: appearance) => {
         debugger;
         setHeroStats((prev) => {
-            debugger;
-            return ({ ...prev, ...changedData })
+            let previusApp = prev.appearance;
+            prev.appearance = { ...previusApp , ...changedData };
+            return ({ ...prev })
         })
     } ,[])
+
+    // const changeStatsNestedFunction = useCallback ( (changedData: any) => {
+    //     debugger;
+    //     setHeroStats((prev) => {
+    //         debugger;
+    //         return ({ ...prev, ...changedData })
+    //     })
+    // } ,[])
 
         console.log("HERO STATS", heroStats);
     // const nameOriginConflictRemoval = useCallback( () => {
