@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { QuickHero } from "../../Interfaces/QuickHero"
 import { SubComplex } from "./SubComplex"
+import { genderGenerator } from "../../functions/GeneratorFunc"
 
 export function Complex() {
     const [heroStats, setHeroStats] = useState<QuickHero>({
@@ -48,8 +49,9 @@ export function Complex() {
     })
 
     const changeStatsFunction = (changedData: any) => {
+        debugger;
         setHeroStats((prev) => {
-            return ({ ...prev, changedData })
+            return ({ ...prev, ...changedData })
         })
     }
 
@@ -57,7 +59,7 @@ export function Complex() {
         <div className="Container">
             <div>
                 <h2>Наративни характеристики</h2>
-                <SubComplex name="Пол" stat={heroStats.gender} changeStatsFunction={changeStatsFunction}/>
+                <SubComplex name="Пол" stat={{gender: heroStats.gender}} changeStatsFunction={changeStatsFunction} reRollFunc={genderGenerator}/>
                 <p> Пол: {heroStats.gender}</p>
                 <p> Произход: {heroStats.origin}</p>
                 <p> Общество: {heroStats.society}</p>
