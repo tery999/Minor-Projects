@@ -51,6 +51,7 @@ export function Complex() {
     })
 
     const changeStatsFunction = useCallback ( (changedData: any) => {
+        debugger;
         setHeroStats((prev) => {
             return ({ ...prev, ...changedData })
         })
@@ -63,9 +64,6 @@ export function Complex() {
     })
     },[heroStats.origin])
 
-    // const addTodo = useCallback(() => {
-    //     setTodos((t) => [...t, "New Todo"]);
-    // }, [todos]);
 
     return (
         <div className="Container">

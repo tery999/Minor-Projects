@@ -23,6 +23,9 @@ export function SubComplexFunc(props: prop) {
     return (
         <div>
             <p>{name}: {value} </p>
+            { key==="origin" &&
+             <button onClick={() => changeStatsFunction({ [key]: reRollResult , name:""})}>but</button>
+            }
             <button onClick={() => changeStatsFunction({ [key]: reRollResult })}>but</button>
         </div>
     )
