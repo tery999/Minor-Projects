@@ -1,10 +1,9 @@
 import React from "react";
 
-interface prop {
+export interface prop {
     name: string,
     stat: any,
     changeStatsFunction: (changedData: any) => void,
-    nameOriginConflictRemoval?:()=>void,
     reRollFunc: any
 }
 
@@ -18,15 +17,18 @@ export function SubComplexFunc(props: prop) {
     const reRollResult = props.reRollFunc();
 
     console.log("CHECK FOR RERENDERS");
-    console.log("COMPONENT IS ABOUT" , key);
+    console.log("COMPONENT IS ABOUT", key);
 
     return (
         <div>
             <p>{name}: {value} </p>
-            { key==="origin" &&
-             <button onClick={() => changeStatsFunction({ [key]: reRollResult , name:""})}>but</button>
+            {(key === "origin" || key === "gender") &&
+                <button onClick={() => changeStatsFunction({ [key]: reRollResult, name: "" })}>but</button>
             }
-            <button onClick={() => changeStatsFunction({ [key]: reRollResult })}>but</button>
+
+            {(key !== "origin" && key !== "gender") &&
+                <button onClick={() => changeStatsFunction({ [key]: reRollResult})}>but</button>
+            }
         </div>
     )
 }
