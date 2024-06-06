@@ -817,9 +817,163 @@ export function bodyTypesGenerator(gender: "мъж" | "жена" | "", age: age,
             break;
     }
 
-    const body:body = {
-        height:heightInfo,
-        shape:shapeInfo
+    const body: body = {
+        height: heightInfo,
+        shape: shapeInfo
     }
     return body;
+}
+
+//forSubComplex - Individual values
+
+export function colorGenerator(origin: origin) {
+    debugger;
+    const diceRollColor = Math.floor(Math.random() * 100) + 1;
+    let color = "";
+    if (origin === "Футарк") {
+        // ==== COLOR ========================
+        switch (true) {
+            case diceRollColor <= 25:
+                color = "блед"
+                break;
+
+            case diceRollColor >= 26 && diceRollColor <= 50:
+                color = "румен"
+                break;
+
+            case diceRollColor >= 51 && diceRollColor <= 70:
+                color = "червендалест"
+                break;
+
+            case diceRollColor >= 71 && diceRollColor <= 90:
+                color = "златист"
+                break;
+
+            case diceRollColor >= 91 && diceRollColor <= 100:
+                color = "бронзов"
+                break;
+        }
+    } else if (origin === "Огам") {
+        // ==== COLOR ========================
+        switch (true) {
+            case diceRollColor <= 25:
+                color = "блед"
+                break;
+
+            case diceRollColor >= 26 && diceRollColor <= 50:
+                color = "румен"
+                break;
+
+            case diceRollColor >= 51 && diceRollColor <= 70:
+                color = "червендалест"
+                break;
+
+            case diceRollColor >= 71 && diceRollColor <= 90:
+                color = "златист"
+                break;
+
+            case diceRollColor >= 91 && diceRollColor <= 100:
+                color = "бронзов"
+                break;
+        }
+    } else if (origin === "Сирильско краище") {
+        // ==== COLOR ========================
+        switch (true) {
+            case diceRollColor <= 25:
+                color = "блед"
+                break;
+
+            case diceRollColor >= 26 && diceRollColor <= 50:
+                color = "румен"
+                break;
+
+            case diceRollColor >= 51 && diceRollColor <= 70:
+                color = "червендалест"
+                break;
+
+            case diceRollColor >= 71 && diceRollColor <= 90:
+                color = "златист"
+                break;
+
+            case diceRollColor >= 91 && diceRollColor <= 100:
+                color = "бронзов"
+                break;
+        }
+    } else if (origin === "Латинае") {
+        // ==== COLOR ========================
+        switch (true) {
+            case diceRollColor <= 25:
+                color = "маслинен"
+                break;
+
+            case diceRollColor >= 26 && diceRollColor <= 50:
+                color = "бронзов"
+                break;
+
+            case diceRollColor >= 51 && diceRollColor <= 70:
+                color = "златист"
+                break;
+
+            case diceRollColor >= 71 && diceRollColor <= 90:
+                color = "бежов"
+                break;
+
+            case diceRollColor >= 91 && diceRollColor <= 100:
+                color = "мургав"
+                break;
+        }
+    } else if (origin === "Орхонг") {
+        // ==== COLOR ========================
+        switch (true) {
+            case diceRollColor <= 25:
+                color = "бежов"
+                break;
+
+            case diceRollColor >= 26 && diceRollColor <= 50:
+                color = "златист"
+                break;
+
+            case diceRollColor >= 51 && diceRollColor <= 70:
+                color = "златист"
+                break;
+
+            case diceRollColor >= 71 && diceRollColor <= 90:
+                color = "бронзов"
+                break;
+
+            case diceRollColor >= 91 && diceRollColor <= 100:
+                color = "мургав"
+                break;
+        }
+    } else if (origin === "Хабилеа") {
+        // ==== COLOR ========================
+        switch (true) {
+            case diceRollColor <= 25:
+                color = "тъмен"
+                break;
+
+            case diceRollColor >= 26 && diceRollColor <= 50:
+                color = "мургав"
+                break;
+
+            case diceRollColor >= 51 && diceRollColor <= 70:
+                color = "бронзов"
+                break;
+
+            case diceRollColor >= 71 && diceRollColor <= 90:
+                color = "мургав"
+                break;
+
+            case diceRollColor >= 91 && diceRollColor <= 100:
+                color = "тъмен"
+                break;
+        }
+    }
+
+    const appearanceObj = {
+        appearance: {
+            color
+        }
+    }
+    return {color};
 }

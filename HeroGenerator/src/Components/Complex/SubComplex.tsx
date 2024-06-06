@@ -16,9 +16,6 @@ export function SubComplexFunc(props: prop) {
     const changeStatsFunction = props.changeStatsFunction;
     const reRollResult = props.reRollFunc();
 
-    console.log("CHECK FOR RERENDERS");
-    console.log("COMPONENT IS ABOUT", key);
-
     return (
         <div>
             <p>{name}: {value} </p>

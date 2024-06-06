@@ -2,13 +2,14 @@ import { useCallback, useState } from "react"
 import { QuickHero } from "../../Interfaces/QuickHero"
 import { SubComplex } from "./SubComplex"
 import { genderGenerator, originGenerator, societyGenerator } from "../../functions/GeneratorFunc"
-import { ageGenerator } from "../../functions/appearanceGenerator"
+import { ageGenerator, colorGenerator } from "../../functions/appearanceGenerator"
 import { nameGenerator } from "../../functions/nameGeneratorFunc"
 import { Link } from "react-router-dom"
 import { SubComplexAppearance } from "./SubComplexAppearance"
 
 export function Complex() {
     const [heroStats, setHeroStats] = useState<QuickHero>({
+        //having a lot of trouble with updating Nested Objects. 
         gender: "мъж",
         origin: "",
         society: "",
@@ -53,11 +54,21 @@ export function Complex() {
     })
 
     const changeStatsFunction = useCallback ( (changedData: any) => {
+        debugger;
         setHeroStats((prev) => {
             return ({ ...prev, ...changedData })
         })
     } ,[])
 
+    const changeStatsNestedFunction = useCallback ( (changedData: any) => {
+        debugger;
+        setHeroStats((prev) => {
+            debugger;
+            return ({ ...prev, ...changedData })
+        })
+    } ,[])
+
+        console.log("HERO STATS", heroStats);
     // const nameOriginConflictRemoval = useCallback( () => {
     //     debugger;
     //     setHeroStats((prev) => {
@@ -79,7 +90,7 @@ export function Complex() {
             <div>
             <h2>Външност - НЕ Е ГОТОВО</h2>
             <SubComplex name="Възраст" stat={{ age: heroStats.age }} changeStatsFunction={changeStatsFunction} reRollFunc={ageGenerator} />
-            <SubComplexAppearance name="Тен" stat={{ color: heroStats.appearance.color }} changeStatsFunction={changeStatsFunction} reRollFunc={ageGenerator} />
+            <SubComplexAppearance name="Тен" stat={ {color: heroStats.appearance.color }} changeStatsFunction={changeStatsNestedFunction} reRollFunc={()=>colorGenerator(heroStats.origin)} />
             <SubComplexAppearance name="Коса" stat={{ hair: heroStats.appearance.hair }} changeStatsFunction={changeStatsFunction} reRollFunc={ageGenerator} />
             <SubComplexAppearance name="Очи" stat={{ eyes: heroStats.appearance.eyes }} changeStatsFunction={changeStatsFunction} reRollFunc={ageGenerator} />
             </div>
