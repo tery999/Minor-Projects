@@ -1,24 +1,31 @@
+import React from "react";
+
 interface prop {
-    name:string,
-    stat:any,
-    changeStatsFunction:(changedData:any)=>void,
-    reRollFunc:any
+    name: string,
+    stat: any,
+    changeStatsFunction: (changedData: any) => void,
+    nameOriginConflictRemoval?:()=>void,
+    reRollFunc: any
 }
 
-export function SubComplex(props:prop) {
-    debugger;
+export function SubComplexFunc(props: prop) {
     const name = props.name;
     const stat = props.stat
-    const [keyValue]:[string,string][] = Object.entries(stat);
+    const [keyValue]: [string, string][] = Object.entries(stat);
     const key = keyValue[0];
     const value = keyValue[1]
     const changeStatsFunction = props.changeStatsFunction;
     const reRollResult = props.reRollFunc();
 
+    console.log("CHECK FOR RERENDERS");
+    console.log("COMPONENT IS ABOUT" , key);
+
     return (
-        <>
-         <p>{name}: {value} </p>
-         <button onClick={()=>changeStatsFunction({[key]: reRollResult})}>but</button>
-        </>
+        <div>
+            <p>{name}: {value} </p>
+            <button onClick={() => changeStatsFunction({ [key]: reRollResult })}>but</button>
+        </div>
     )
 }
+
+export const SubComplex = React.memo(SubComplexFunc);

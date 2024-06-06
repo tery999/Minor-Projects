@@ -1,7 +1,9 @@
-import { useState } from "react"
+import { useCallback, useState } from "react"
 import { QuickHero } from "../../Interfaces/QuickHero"
 import { SubComplex } from "./SubComplex"
-import { genderGenerator } from "../../functions/GeneratorFunc"
+import { genderGenerator, originGenerator, societyGenerator } from "../../functions/GeneratorFunc"
+import { ageGenerator } from "../../functions/appearanceGenerator"
+import { nameGenerator } from "../../functions/nameGeneratorFunc"
 
 export function Complex() {
     const [heroStats, setHeroStats] = useState<QuickHero>({
@@ -48,22 +50,34 @@ export function Complex() {
         }
     })
 
-    const changeStatsFunction = (changedData: any) => {
-        debugger;
+    const changeStatsFunction = useCallback ( (changedData: any) => {
         setHeroStats((prev) => {
             return ({ ...prev, ...changedData })
         })
-    }
+    } ,[])
+
+    const nameOriginConflictRemoval = useCallback( () => {
+        debugger;
+        setHeroStats((prev) => {
+           return ({ ...prev, name: "" })
+    })
+    },[heroStats.origin])
+
+    // const addTodo = useCallback(() => {
+    //     setTodos((t) => [...t, "New Todo"]);
+    // }, [todos]);
 
     return (
         <div className="Container">
             <div>
+                <button onClick={nameOriginConflictRemoval}>Testingasd</button>
                 <h2>Наративни характеристики</h2>
-                <SubComplex name="Пол" stat={{gender: heroStats.gender}} changeStatsFunction={changeStatsFunction} reRollFunc={genderGenerator}/>
-                <p> Пол: {heroStats.gender}</p>
-                <p> Произход: {heroStats.origin}</p>
-                <p> Общество: {heroStats.society}</p>
-                <p> Име: {heroStats.name}</p>
+                <SubComplex name="Пол" stat={{ gender: heroStats.gender }} changeStatsFunction={changeStatsFunction} reRollFunc={genderGenerator} />
+                <SubComplex name="Произход" stat={{ origin: heroStats.origin }} changeStatsFunction={changeStatsFunction} reRollFunc={() => originGenerator("quick")} nameOriginConflictRemoval={nameOriginConflictRemoval} />
+                <SubComplex name="Общество" stat={{ society: heroStats.society }} changeStatsFunction={changeStatsFunction} reRollFunc={societyGenerator} />
+                <SubComplex name="Възраст" stat={{ age: heroStats.age }} changeStatsFunction={changeStatsFunction} reRollFunc={ageGenerator} />
+                <SubComplex name="Имe" stat={{ name: heroStats.name }} changeStatsFunction={changeStatsFunction} reRollFunc={() => nameGenerator(heroStats.gender as "мъж" | "жена", heroStats.origin, heroStats.age)} />
+
             </div>
         </div>
     )
