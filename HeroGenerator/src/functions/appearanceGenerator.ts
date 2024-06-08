@@ -831,7 +831,6 @@ export function colorGenerator(origin: origin) {
     const diceRollColor = Math.floor(Math.random() * 100) + 1;
     let color = "";
     if (origin === "Футарк") {
-        // ==== COLOR ========================
         switch (true) {
             case diceRollColor <= 25:
                 color = "блед"
@@ -976,4 +975,11 @@ export function colorGenerator(origin: origin) {
         }
     }
     return {color};
+}
+
+export function hairGenerator(origin:origin) {
+    const diceRollHair = Math.floor(Math.random() * 100) + 1;
+    let hair = "";
+
+    return {hair}
 }
