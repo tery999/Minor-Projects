@@ -969,17 +969,287 @@ export function colorGenerator(origin: origin) {
         }
     }
 
-    const appearanceObj = {
-        appearance: {
-            color
-        }
-    }
-    return {color};
+    return color;
 }
 
-export function hairGenerator(origin:origin) {
+export function hairGenerator(origin: origin) {
     const diceRollHair = Math.floor(Math.random() * 100) + 1;
     let hair = "";
 
-    return {hair}
+    if (origin === "Футарк") {
+        switch (true) {
+            case diceRollHair <= 25:
+                hair = "права, светлоруса"
+                break;
+
+            case diceRollHair >= 26 && diceRollHair <= 50:
+                hair = "вълниста, тъмноруса"
+                break;
+
+            case diceRollHair >= 51 && diceRollHair <= 70:
+                hair = "права, рижава"
+                break;
+
+            case diceRollHair >= 71 && diceRollHair <= 90:
+                hair = "вълниста, рижава"
+                break;
+
+            case diceRollHair >= 91 && diceRollHair <= 100:
+                hair = "права, кестенява"
+                break;
+        }
+    } else if (origin === "Огам") {
+        switch (true) {
+            case diceRollHair <= 25:
+                hair = "права, светлоруса"
+                break;
+
+            case diceRollHair >= 26 && diceRollHair <= 50:
+                hair = "права, рижава"
+                break;
+
+            case diceRollHair >= 51 && diceRollHair <= 70:
+                hair = "вълниста, рижава"
+                break;
+
+            case diceRollHair >= 71 && diceRollHair <= 90:
+                hair = "права, тъмноруса"
+                break;
+
+            case diceRollHair >= 91 && diceRollHair <= 100:
+                hair = "права, кестенява"
+                break;
+        }
+    } else if (origin === "Сирильско краище") {
+        switch (true) {
+            case diceRollHair <= 25:
+                hair = "права, тъмноруса"
+                break;
+
+            case diceRollHair >= 26 && diceRollHair <= 50:
+                hair = "права, кестенява"
+                break;
+
+            case diceRollHair >= 51 && diceRollHair <= 70:
+                hair = "вълниста, кестенява"
+                break;
+
+            case diceRollHair >= 71 && diceRollHair <= 90:
+                hair = "вълниста, черна"
+                break;
+
+            case diceRollHair >= 91 && diceRollHair <= 100:
+                hair = "вълниста, рижава"
+                break;
+        }
+    } else if (origin === "Латинае") {
+        switch (true) {
+            case diceRollHair <= 25:
+                hair = "къдрава, черна"
+                break;
+
+            case diceRollHair >= 26 && diceRollHair <= 50:
+                hair = "вълниста, черна"
+                break;
+
+            case diceRollHair >= 51 && diceRollHair <= 70:
+                hair = "вълниста, кестенява"
+                break;
+
+            case diceRollHair >= 71 && diceRollHair <= 90:
+                hair = "вълниста, тъмноруса"
+                break;
+
+            case diceRollHair >= 91 && diceRollHair <= 100:
+                hair = "вълниста, рижава"
+                break;
+        }
+    } else if (origin === "Орхонг") {
+        switch (true) {
+            case diceRollHair <= 25:
+                hair = "вълниста, кестенява"
+                break;
+
+            case diceRollHair >= 26 && diceRollHair <= 50:
+                hair = "права, черна"
+                break;
+
+            case diceRollHair >= 51 && diceRollHair <= 70:
+                hair = "вълниста, черна"
+                break;
+
+            case diceRollHair >= 71 && diceRollHair <= 90:
+                hair = "права, кестенява"
+                break;
+
+            case diceRollHair >= 91 && diceRollHair <= 100:
+                hair = "къдрава, черна"
+                break;
+        }
+    } else if (origin === "Хабилеа") {
+        switch (true) {
+            case diceRollHair <= 25:
+                hair = "къдрава, черна"
+                break;
+
+            case diceRollHair >= 26 && diceRollHair <= 50:
+                hair = "къдрава, тъмнокестенява"
+                break;
+
+            case diceRollHair >= 51 && diceRollHair <= 70:
+                hair = "права, черна"
+                break;
+
+            case diceRollHair >= 71 && diceRollHair <= 90:
+                hair = "права, тъмнокестенява"
+                break;
+
+            case diceRollHair >= 91 && diceRollHair <= 100:
+                hair = "къдрава, рижава"
+                break;
+        }
+    }
+
+    return hair;
+}
+
+export function eyesGenerator(origin: origin) {
+    const diceRollEyes = Math.floor(Math.random() * 100) + 1;
+    let eyes = "";
+
+    if (origin === "Футарк") {
+        switch (true) {
+            case diceRollEyes <= 25:
+                eyes = "кръгли, сиви"
+                break;
+
+            case diceRollEyes >= 26 && diceRollEyes <= 50:
+                eyes = "кръгли, светлосини"
+                break;
+
+            case diceRollEyes >= 51 && diceRollEyes <= 70:
+                eyes = "кръгли, тъмносини"
+                break;
+
+            case diceRollEyes >= 71 && diceRollEyes <= 90:
+                eyes = "дръпнати, сиви"
+                break;
+
+            case diceRollEyes >= 91 && diceRollEyes <= 100:
+                eyes = "дръпнати, черни"
+                break;
+        }
+    } else if (origin === "Огам") {
+        switch (true) {
+            case diceRollEyes <= 25:
+                eyes = "кръгли, сиви"
+                break;
+
+            case diceRollEyes >= 26 && diceRollEyes <= 50:
+                eyes = "кръгли, светлосини"
+                break;
+
+            case diceRollEyes >= 51 && diceRollEyes <= 70:
+                eyes = "кръгли, зелени"
+                break;
+
+            case diceRollEyes >= 71 && diceRollEyes <= 90:
+                eyes = "кръгли, пъстри"
+                break;
+
+            case diceRollEyes >= 91 && diceRollEyes <= 100:
+                eyes = "кръгли, кафяви"
+                break;
+        }
+    } else if (origin === "Сирильско краище") {
+        switch (true) {
+            case diceRollEyes <= 25:
+                eyes = "кръгли, тъмносини"
+                break;
+
+            case diceRollEyes >= 26 && diceRollEyes <= 50:
+                eyes = "кръгли, пъстри"
+                break;
+
+            case diceRollEyes >= 51 && diceRollEyes <= 70:
+                eyes = "кръгли, светлокафяви"
+                break;
+
+            case diceRollEyes >= 71 && diceRollEyes <= 90:
+                eyes = "кръгли, тъмнокафяви"
+                break;
+
+            case diceRollEyes >= 91 && diceRollEyes <= 100:
+                eyes = "кръгли, черни"
+                break;
+        }
+    } else if (origin === "Латинае") {
+        switch (true) {
+            case diceRollEyes <= 25:
+                eyes = "кръгли, черни"
+                break;
+
+            case diceRollEyes >= 26 && diceRollEyes <= 50:
+                eyes = "кръгли, тъмнокафяви"
+                break;
+
+            case diceRollEyes >= 51 && diceRollEyes <= 70:
+                eyes = "черни, с бадемова форма"
+                break;
+
+            case diceRollEyes >= 71 && diceRollEyes <= 90:
+                eyes = "пъстри, с бадемова форма"
+                break;
+
+            case diceRollEyes >= 91 && diceRollEyes <= 100:
+                eyes = "зелени, с бадемова форма"
+                break;
+        }
+    } else if (origin === "Орхонг") {
+        switch (true) {
+            case diceRollEyes <= 25:
+                eyes = "дръпнати, тъмнокафяви"
+                break;
+
+            case diceRollEyes >= 26 && diceRollEyes <= 50:
+                eyes = "дръпнати, черни"
+                break;
+
+            case diceRollEyes >= 51 && diceRollEyes <= 70:
+                eyes = "черни, с бадемова форма"
+                break;
+
+            case diceRollEyes >= 71 && diceRollEyes <= 90:
+                eyes = "дръпнати, пъстри"
+                break;
+
+            case diceRollEyes >= 91 && diceRollEyes <= 100:
+                eyes = "пъстри, с бадемова форма"
+                break;
+        }
+    } else if (origin === "Хабилеа") {
+        switch (true) {
+            case diceRollEyes <= 25:
+                eyes = "кръгли, черни"
+                break;
+
+            case diceRollEyes >= 26 && diceRollEyes <= 50:
+                eyes = "кръгли, тъмнокафяви"
+                break;
+
+            case diceRollEyes >= 51 && diceRollEyes <= 70:
+                eyes = "кръгли, светлокафяви"
+                break;
+
+            case diceRollEyes >= 71 && diceRollEyes <= 90:
+                eyes = "тъмнокафяви, с бадемова форма"
+                break;
+
+            case diceRollEyes >= 91 && diceRollEyes <= 100:
+                eyes = "светлокафяви, с бадемова форма"
+                break;
+        }
+    }
+
+    return eyes;
 }
