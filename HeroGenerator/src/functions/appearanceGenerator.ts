@@ -474,8 +474,9 @@ export function featuresGenerator(): string {
 
     return featuresPresentString;
 }
-
-export function bodyTypesGenerator(gender: "мъж" | "жена" | "", age: age, origin: origin): body {
+// single - for returning only height or shape in the complex component
+export function bodyTypesGenerator(gender: "мъж" | "жена" | "", age: age, origin: origin, 
+    single:"height"|"shape"|"" = ""): body|string {
     let height: number = 0;
     let shape: number = 0;
 
@@ -815,6 +816,14 @@ export function bodyTypesGenerator(gender: "мъж" | "жена" | "", age: age,
         case shape <= 10:
             shapeInfo = "отлична";
             break;
+    }
+
+    if( single === "height") {
+        return heightInfo;
+    }
+
+    if( single === "shape") {
+        return shapeInfo;
     }
 
     const body: body = {

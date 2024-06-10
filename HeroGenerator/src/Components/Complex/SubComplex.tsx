@@ -9,7 +9,7 @@ export interface prop {
 }
 
 export function SubComplexFunc(props: prop) {
-    debugger;
+    // debugger;
     
     const name = props.name;
     const stat = props.stat

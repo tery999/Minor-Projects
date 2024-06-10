@@ -2,7 +2,7 @@ import { useCallback, useMemo, useState } from "react"
 import { QuickHero, appearance } from "../../Interfaces/QuickHero"
 import { SubComplex } from "./SubComplex"
 import { genderGenerator, originGenerator, societyGenerator } from "../../functions/GeneratorFunc"
-import { ageGenerator, colorGenerator, eyesGenerator, hairGenerator } from "../../functions/appearanceGenerator"
+import { ageGenerator, bodyTypesGenerator, colorGenerator, eyesGenerator, featuresGenerator, hairGenerator } from "../../functions/appearanceGenerator"
 import { nameGenerator } from "../../functions/nameGeneratorFunc"
 import { Link } from "react-router-dom"
 import { appearanceStats, narativeStats } from "../../Interfaces/complexHero"
@@ -79,10 +79,9 @@ export function Complex() {
                 <SubComplex name="Възраст" stat={{ age: appearanceStats.age }} changeStatsFunction={changeAppFunction} reRollFunc={ageGenerator} />
                 <SubComplex name="Тен" stat={{ color: appearanceStats.color }} changeStatsFunction={changeAppFunction} reRollFunc={() => colorGenerator(narativeStats.origin)} />
                 <SubComplex name="Коса" stat={{ hair: appearanceStats.hair }} changeStatsFunction={changeAppFunction} reRollFunc={()=> hairGenerator(narativeStats.origin)} />
-                <SubComplex name="Очи" stat={{ eyes: appearanceStats.eyes }} changeStatsFunction={changeAppFunction} reRollFunc={() => eyesGenerator(narativeStats.origin)} />
-                <SubComplex name="Очи" stat={{ name: narativeStats.name }} changeStatsFunction={changeNarFunction} reRollFunc={() => nameGenerator(narativeStats.gender as "мъж" | "жена", narativeStats.origin, appearanceStats.age)} />
-                <SubComplex name="Очи" stat={{ name: narativeStats.name }} changeStatsFunction={changeNarFunction} reRollFunc={() => nameGenerator(narativeStats.gender as "мъж" | "жена", narativeStats.origin, appearanceStats.age)} />
-                <SubComplex name="Очи" stat={{ name: narativeStats.name }} changeStatsFunction={changeNarFunction} reRollFunc={() => nameGenerator(narativeStats.gender as "мъж" | "жена", narativeStats.origin, appearanceStats.age)} />
+                <SubComplex name="Белези" stat={{ features: appearanceStats.features }} changeStatsFunction={changeAppFunction} reRollFunc={featuresGenerator} />
+                <SubComplex name="Ръст" stat={{ height: appearanceStats.height }} changeStatsFunction={changeAppFunction} reRollFunc={() => bodyTypesGenerator(narativeStats.gender , appearanceStats.age , narativeStats.origin , "height")} />
+                <SubComplex name="Форма" stat={{ shape: appearanceStats.shape }} changeStatsFunction={changeAppFunction} reRollFunc={() => bodyTypesGenerator(narativeStats.gender , appearanceStats.age , narativeStats.origin , "shape")} />
             </div>
         </div>
     )
