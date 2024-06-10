@@ -17,6 +17,7 @@ export interface appearanceStats {
     shape:string
 }
 
+
 // appearance: {
 //     color: "",
 //     hair: "",

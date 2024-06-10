@@ -1,6 +1,6 @@
 import "./Quick.css"
 import { useEffect, useState } from "react"
-import { QuickHero } from "../../Interfaces/QuickHero"
+import { QuickHero, body } from "../../Interfaces/QuickHero"
 import { Link } from "react-router-dom"
 import { genderGenerator, originGenerator, societyGenerator } from "../../functions/GeneratorFunc"
 import { nameGenerator } from "../../functions/nameGeneratorFunc"
@@ -62,7 +62,7 @@ export default function Quick() {
         const name = nameGenerator(genderGen, origin, age);
         const appearance = appearanceGeneratorFunc(origin);
         const features = featuresGenerator();
-        const body = bodyTypesGenerator(genderGen, age, origin);
+        const body = bodyTypesGenerator(genderGen, age, origin) as body;
         const character = characterGenerator();
         const calling = callingGenerator();
         const aims = aimsGenerator();
