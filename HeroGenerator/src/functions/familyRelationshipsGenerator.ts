@@ -254,6 +254,7 @@ export function reputationGenerator(surrounding: surrounding): string {
 }
 
 export function familyGenerator(): string {
+    debugger;
     let family = "";
     const roll = diceRollFunction(100);
 

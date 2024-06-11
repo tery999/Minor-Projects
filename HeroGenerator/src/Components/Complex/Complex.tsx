@@ -11,6 +11,7 @@ import { calling, character } from "../../InformationObjects/worldView"
 import { AppearanceComplex } from "./SubComplexes/AppearanceComplex"
 import { aimsGenerator, callingGenerator, characterGenerator, concernsGenerator } from "../../functions/worldViewGenerator"
 import { WorldviewComplex } from "./SubComplexes/WorldviewComplex"
+import { FamilyNRelationshipComplex } from "./SubComplexes/FamilyNRelationshipComplex"
 
 
 export function Complex() {
@@ -54,6 +55,8 @@ export function Complex() {
             <AppearanceComplex age={age} gender={gender} origin={origin}  changeAgeFunction={changeAgeFunction}/>
 
             <WorldviewComplex/>
+
+            <FamilyNRelationshipComplex age={age} gender={gender} origin={origin}/>
         </div>
     )
 }
