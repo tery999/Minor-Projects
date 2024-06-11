@@ -22,6 +22,7 @@ export function SubComplexFunc(props: prop) {
     const combined = () => {
         debugger;
         changeStatsFunction(({ [key]: props.reRollFunc() }))
+        // changed age state in Complex comp, as it is used as parameter in other Generator functions
         if (changeAppFunction) {
             changeAppFunction({[key]: props.reRollFunc()});
         }

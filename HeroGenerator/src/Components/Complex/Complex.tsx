@@ -10,6 +10,7 @@ import { age, worldView } from "../../Interfaces/QuickHero"
 import { calling, character } from "../../InformationObjects/worldView"
 import { AppearanceComplex } from "./SubComplexes/AppearanceComplex"
 import { aimsGenerator, callingGenerator, characterGenerator, concernsGenerator } from "../../functions/worldViewGenerator"
+import { WorldviewComplex } from "./SubComplexes/WorldviewComplex"
 
 
 export function Complex() {
@@ -78,13 +79,7 @@ export function Complex() {
 
             <AppearanceComplex gender={gender} origin={origin}  changeAgeFunction={changeAgeFunction}/>
 
-            <div className="WorldviewCont">
-                <h2>Мироглед</h2>
-                <SubComplex name="Нрав" stat={{ character: worldviewStats.character }} changeStatsFunction={changeViewFunction} reRollFunc={characterGenerator} />
-                <SubComplex name="Призвание" stat={{ calling: worldviewStats.calling }} changeStatsFunction={changeViewFunction} reRollFunc={callingGenerator} />
-                <SubComplex name="Цели" stat={{ aims: worldviewStats.aims }} changeStatsFunction={changeViewFunction} reRollFunc={aimsGenerator} />
-                <SubComplex name="Опасения" stat={{ concerns: worldviewStats.concerns }} changeStatsFunction={changeViewFunction} reRollFunc={concernsGenerator} />
-            </div>
+            <WorldviewComplex/>
         </div>
     )
 }
