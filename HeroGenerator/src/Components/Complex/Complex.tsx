@@ -25,22 +25,8 @@ export function Complex() {
         age:"" as age,
     })
 
-    const [worldviewStats, setWorldviewStats] = useState<worldView>({
-        character: "",
-        calling: "",
-        aims:"",
-        concerns: ""
-    })
-
     const changeNarFunction = useCallback((changedData: any) => {
         setNarativeStats((prev) => {
-            return ({ ...prev, ...changedData })
-        })
-    }, []);
-
-
-    const changeViewFunction = useCallback((changedData: any) => {
-        setWorldviewStats((prev) => {
             return ({ ...prev, ...changedData })
         })
     }, []);
@@ -50,21 +36,9 @@ export function Complex() {
        setAppearanceStats(changedData);
     }, [])
 
-
-
-    //reset all appearance stats if the origin changes
-    // const resetStatsOrigin = useCallback(() => {
-    //     setAppearanceStats(  { age:"",
-    //         color: "",
-    //         hair:"",
-    //         eyes:"",
-    //         features:"",
-    //         height:"",
-    //         shape:""} )
-    // }, [])
-
     const gender = useMemo( ()=> {return (narativeStats.gender) },[narativeStats.gender]);
     const origin = useMemo( ()=> {return (narativeStats.origin) },[narativeStats.origin]);
+    const age = useMemo( ()=> {return (appearanceStats.age) },[appearanceStats.age]);
 
     return (
         <div className="container">
@@ -74,10 +48,10 @@ export function Complex() {
                 <SubComplex name="Пол" stat={{gender:narativeStats.gender}} changeStatsFunction={changeNarFunction} reRollFunc={genderGenerator} />
                 <SubComplex name="Произход" stat={{origin:narativeStats.origin}} changeStatsFunction={changeNarFunction} reRollFunc={()=>originGenerator("quick")} />
                 <SubComplex name="Общество" stat={{society:narativeStats.society}} changeStatsFunction={changeNarFunction} reRollFunc={societyGenerator} />
-                <SubComplex name="Имe" stat={{name: narativeStats.name}} changeStatsFunction={changeNarFunction} reRollFunc={() => nameGenerator(narativeStats.gender as "мъж" | "жена", narativeStats.origin, appearanceStats.age)} />
+                <SubComplex name="Имe" stat={{name: narativeStats.name}} changeStatsFunction={changeNarFunction} reRollFunc={() => nameGenerator(narativeStats.gender as "мъж" | "жена", narativeStats.origin, age)} />
             </div>
 
-            <AppearanceComplex gender={gender} origin={origin}  changeAgeFunction={changeAgeFunction}/>
+            <AppearanceComplex age={age} gender={gender} origin={origin}  changeAgeFunction={changeAgeFunction}/>
 
             <WorldviewComplex/>
         </div>

@@ -17,14 +17,16 @@ export function SubComplexFunc(props: prop) {
     const key = keyValue[0];
     const value = keyValue[1]
     const changeStatsFunction = props.changeStatsFunction;
-    const changeAppFunction = props.changeAgeFunction;
+    const changeAgeFunction = props.changeAgeFunction;
 
     const combined = () => {
-        debugger;
-        changeStatsFunction(({ [key]: props.reRollFunc() }))
-        // changed age state in Complex comp, as it is used as parameter in other Generator functions
-        if (changeAppFunction) {
-            changeAppFunction({[key]: props.reRollFunc()});
+        // change stats in appearance complex if it isnt about age
+        if (key !=="age") {
+            changeStatsFunction(({ [key]: props.reRollFunc() }))
+        }
+        // change ONLY age state in Complex comp, as it is used as parameter in other Generator functions
+        if (changeAgeFunction) {
+            changeAgeFunction({[key]: props.reRollFunc()});
         }
     }
 

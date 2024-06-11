@@ -8,7 +8,7 @@ export interface narativeStats {
 }
 
 export interface appearanceStats {
-    age:age,
+    age?:age,
     color: string,
     hair:string,
     eyes:string,

@@ -1,15 +1,17 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { appearanceStats } from "../../../Interfaces/complexHero";
 import { SubComplex } from "../SubComplex";
 import { ageGenerator, bodyTypesGenerator, colorGenerator, featuresGenerator, hairGenerator } from "../../../functions/appearanceGenerator";
-import {  origin } from "../../../Interfaces/QuickHero";
+import {  age, origin } from "../../../Interfaces/QuickHero";
 
 export function AppearanceComplexFunction(props:any) {
+    debugger;
     const gender:"мъж" | "жена" | "" = props.gender;
     const origin:origin = props.origin;
+    const age:age = props.age;
     const changeAgeFunction = props.changeAgeFunction;
     const [appearanceStats, setAppearanceStats] = useState<appearanceStats>({
-        age:"",
+        age:age,
         color: "",
         hair:"",
         eyes:"",
@@ -24,17 +26,28 @@ export function AppearanceComplexFunction(props:any) {
         })
     }, []);
 
+    useEffect( ()=> {
+        setAppearanceStats ( (prev) => {
+            return ( { ...prev , color: "",
+                hair:"",
+                eyes:"",
+                features:"",
+                height:"",
+                shape:""})
+           })
+    },[origin , age, props.gender])
+
    
 
     return (
         <div className="AppearanceCont">
                 <h2>Външност</h2>
-                <SubComplex name="Възраст" stat={{ age: appearanceStats.age }} changeStatsFunction={changeAppFunction} changeAgeFunction={changeAgeFunction} reRollFunc={ageGenerator} />
+                <SubComplex name="Възраст" stat={{ age: age }} changeStatsFunction={changeAppFunction} changeAgeFunction={changeAgeFunction} reRollFunc={ageGenerator} />
                 <SubComplex name="Тен" stat={{ color: appearanceStats.color }} changeStatsFunction={changeAppFunction} reRollFunc={() => colorGenerator(origin)} />
                 <SubComplex name="Коса" stat={{ hair: appearanceStats.hair }} changeStatsFunction={changeAppFunction} reRollFunc={()=> hairGenerator(origin)} />
                 <SubComplex name="Белези" stat={{ features: appearanceStats.features }} changeStatsFunction={changeAppFunction} reRollFunc={featuresGenerator} />
-                <SubComplex name="Ръст" stat={{ height: appearanceStats.height }} changeStatsFunction={changeAppFunction} reRollFunc={() => bodyTypesGenerator(gender , appearanceStats.age , origin , "height")} />
-                <SubComplex name="Форма" stat={{ shape: appearanceStats.shape }} changeStatsFunction={changeAppFunction} reRollFunc={() => bodyTypesGenerator(gender , appearanceStats.age ,origin , "shape")} />
+                <SubComplex name="Ръст" stat={{ height: appearanceStats.height }} changeStatsFunction={changeAppFunction} reRollFunc={() => bodyTypesGenerator(gender , age , origin , "height")} />
+                <SubComplex name="Форма" stat={{ shape: appearanceStats.shape }} changeStatsFunction={changeAppFunction} reRollFunc={() => bodyTypesGenerator(gender , age ,origin , "shape")} />
             </div>
     )
 }
