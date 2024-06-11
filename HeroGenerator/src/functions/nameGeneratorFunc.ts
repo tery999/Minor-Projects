@@ -5,6 +5,7 @@ import { age, origin } from "../Interfaces/QuickHero";
 // making separate file as the function became too long
 
 export function nameGenerator(gender: "мъж" | "жена", origin: origin, age:age) {
+    debugger;
     //given name
     const diceRoll = Math.floor(Math.random() * 50) + 1;
     //second name

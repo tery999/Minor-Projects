@@ -477,6 +477,7 @@ export function featuresGenerator(): string {
 // single - for returning only height or shape in the complex component
 export function bodyTypesGenerator(gender: "мъж" | "жена" | "", age: age, origin: origin, 
     single:"height"|"shape"|"" = ""): body|string {
+        debugger;
     let height: number = 0;
     let shape: number = 0;
 
