@@ -1,14 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { appearanceStats } from "../../../Interfaces/complexHero";
 import { SubComplex } from "../SubComplex";
-import { ageGenerator, bodyTypesGenerator, colorGenerator, featuresGenerator, hairGenerator } from "../../../functions/appearanceGenerator";
 import {  age, familyAndRelationships, origin } from "../../../Interfaces/QuickHero";
 import { DiffAndAch, familyGenerator, familyReputationGenerator, foesGenerator, friendshipGenerator, relationshipStatusFunc, reputationGenerator, rumorGenerator, siblingsGenerator, surroundingGenerator, wealthGenerator } from "../../../functions/familyRelationshipsGenerator";
 
 export function FamilyNRelationshipFunc(props:any) {
     debugger;
-    const gender:"мъж" | "жена" | "" = props.gender;
-    const origin:origin = props.origin;
     const age:age = props.age;
     const [familyStats, setFamilyStats] = useState<familyAndRelationships>({
         surrounding: "",

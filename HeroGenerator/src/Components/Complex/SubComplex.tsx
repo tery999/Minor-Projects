@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
+
 
 export interface prop {
     name: any,
@@ -35,9 +36,9 @@ export function SubComplexFunc(props: prop) {
 
     return (
         <>
-        <div>
+        <div className="DivHolderStat">
+        <button onClick={() => combined()}>but</button>
             <p>{name}: {value} </p>
-            <button onClick={() => combined()}>but</button>
 
         </div>
         </>

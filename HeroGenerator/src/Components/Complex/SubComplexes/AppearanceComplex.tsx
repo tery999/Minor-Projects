@@ -26,6 +26,7 @@ export function AppearanceComplexFunction(props:any) {
         })
     }, []);
 
+    // if origin , age or gender changes - reset the stats
     useEffect( ()=> {
         setAppearanceStats ( (prev) => {
             return ( { ...prev , color: "",

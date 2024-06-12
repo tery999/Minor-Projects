@@ -6,18 +6,22 @@
 
 .NarativeCont {
     width: 400px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: start;
+    padding-left: 50px;
 }
 
 .AppearanceCont {
     width: 400px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: start;
+    padding-left: 50px;
 }
 
 .WorldviewCont {
@@ -26,4 +30,34 @@
     flex-direction: column;
     justify-content: center;
     align-items: start;
+}
+
+.FamilyCont {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+
+.FirstRow {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items:start ;
+    gap: 50px;
+    border: 5px solid orange;
+    padding-bottom: 10px;
+}
+
+.FirstRow h2 {
+    align-self: center;
+}
+
+.DivHolderStat {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    font-size: 18px;
 }
