@@ -17,7 +17,7 @@ export function MechStatsComplex() {
     }
 
     return (
-        <div>
+        <div className="MechStatHolder">
             <h2>Механични измерения</h2>
             <img className="diceLogo" src={dice} alt=""  onClick={rollStats}/>
             <p> Крепкост: {mechStats.strength}</p>

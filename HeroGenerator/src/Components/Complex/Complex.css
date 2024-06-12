@@ -47,7 +47,7 @@
     align-items:start ;
     gap: 50px;
     border: 5px solid orange;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
 }
 
 .FirstRow h2 {
@@ -63,6 +63,20 @@
 }
 
 .diceLogo {
-    width: 100px;
+    width: 60px;
     cursor: pointer;
+}
+
+.diceLogo:hover {
+    width: 65px;
+    cursor: pointer;
+}
+
+.MechStatHolder {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    font-size: 18px;
 }
