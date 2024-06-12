@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { mechanicStats } from "../../../Interfaces/QuickHero";
-import { mechStatGenerator } from "../../../functions/mechStatGenerator";
+import { mechStatGenerator, mechStatLowHigh } from "../../../functions/mechStatGenerator";
 import dice from "../../../../public/441965163_472462378601661_2030822002986090823_n.png"
 
-export function MechStatsComplex() {
+export function MechStatsComplex(props:any) {
+    const changeMechLowHigh = props.changeMechLowHigh
     const [mechStats, setMechStats] = useState<mechanicStats>({
         strength: 0,
         confidence: 0,
@@ -14,6 +15,8 @@ export function MechStatsComplex() {
     const rollStats = () => {
         const mechSt = mechStatGenerator();
         setMechStats(mechSt);
+        const lowHigh = mechStatLowHigh(mechSt);
+        changeMechLowHigh(lowHigh)
     }
 
     return (

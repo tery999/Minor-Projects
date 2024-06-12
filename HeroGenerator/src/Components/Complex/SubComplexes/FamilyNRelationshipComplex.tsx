@@ -6,6 +6,7 @@ import { DiffAndAch, familyGenerator, familyReputationGenerator, foesGenerator, 
 export function FamilyNRelationshipFunc(props:any) {
     debugger;
     const age:age = props.age;
+    const mechLowHigh = props.mechLowHigh;
     const [familyStats, setFamilyStats] = useState<familyAndRelationships>({
         surrounding: "",
         wealth: "",
@@ -18,6 +19,7 @@ export function FamilyNRelationshipFunc(props:any) {
         enemies: "",
         rumors: "",
         difficultiesAndAchievements: ""
+        
     })
 
     const changeFamFunction = useCallback((changedData: any) => {
@@ -26,7 +28,23 @@ export function FamilyNRelationshipFunc(props:any) {
         })
     }, []);
 
-   
+   useEffect( ()=> {
+    setFamilyStats((prev) => {
+        return ({ ...prev, relationshipStatus: "" })
+    })
+   },[age]);
+
+   useEffect( ()=> {
+    setFamilyStats((prev) => {
+        return ({ ...prev, difficultiesAndAchievements: "" })
+    })
+   },[mechLowHigh])
+
+   useEffect( ()=> {
+    setFamilyStats((prev) => {
+        return ({ ...prev, ownReputation: "" , friendship: ""})
+    })
+   },[familyStats.surrounding])
 
     return (
         <div className="FamilyCont">
@@ -41,7 +59,7 @@ export function FamilyNRelationshipFunc(props:any) {
                 <SubComplex name="Приятелства" stat={{ friendship: familyStats.friendship }} changeStatsFunction={changeFamFunction}  reRollFunc={()=>friendshipGenerator(familyStats.surrounding)}  />
                 <SubComplex name="Вражди" stat={{ enemies: familyStats.enemies }} changeStatsFunction={changeFamFunction} reRollFunc={foesGenerator} />
                 <SubComplex name="Слухове" stat={{ rumors: familyStats.rumors }} changeStatsFunction={changeFamFunction} reRollFunc={rumorGenerator} />
-                <SubComplex name="Трудности и Постижения" stat={{ difficultiesAndAchievements: familyStats.difficultiesAndAchievements }} changeStatsFunction={changeFamFunction} reRollFunc={DiffAndAch} />
+                <SubComplex name="Трудности и Постижения" stat={{ difficultiesAndAchievements: familyStats.difficultiesAndAchievements }} changeStatsFunction={changeFamFunction} reRollFunc={()=> DiffAndAch(mechLowHigh[0], mechLowHigh[1])} />
             </div>
     )
 }

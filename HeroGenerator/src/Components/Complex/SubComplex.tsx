@@ -32,7 +32,8 @@ export function SubComplexFunc(props: prop) {
         }
     }
 
-    console.log("CHECK RERENDERING");
+    // console.log("CHECK RERENDERING");
+    // console.log("IN", key)
 
     return (
         <>

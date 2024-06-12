@@ -36,7 +36,7 @@ export function AppearanceComplexFunction(props:any) {
                 height:"",
                 shape:""})
            })
-    },[origin , age, props.gender])
+    },[origin , age, gender])
 
    
 

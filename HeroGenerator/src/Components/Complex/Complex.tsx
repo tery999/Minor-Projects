@@ -10,6 +10,7 @@ import { AppearanceComplex } from "./SubComplexes/AppearanceComplex"
 import { WorldviewComplex } from "./SubComplexes/WorldviewComplex"
 import { FamilyNRelationshipComplex } from "./SubComplexes/FamilyNRelationshipComplex"
 import { MechStatsComplex } from "./SubComplexes/MechStatsComplex"
+import { MechStatNames } from "../../functions/mechStatGenerator"
 
 
 export function Complex() {
@@ -19,30 +20,38 @@ export function Complex() {
         society: "",
         name: "",
     })
-
-    //outside AppearanceComplex as its needed for other stats as parameter
-    const [appearanceStats, setAppearanceStats] = useState({
-        age: "" as age,
-    })
-
     const changeNarFunction = useCallback((changedData: any) => {
         setNarativeStats((prev) => {
             return ({ ...prev, ...changedData })
         })
     }, []);
 
+
+    //outside AppearanceComplex as its needed for other stats as parameter
+    const [appearanceStats, setAppearanceStats] = useState({
+        age: "" as age,
+    })
     const changeAgeFunction = useCallback((changedData: any) => {
-        debugger;
         setAppearanceStats(changedData);
     }, [])
+
+
+    //used for generator in familyNRelations
+    const [mechLowHigh, setMechLowHigh] = useState<MechStatNames[]>([]);
+    const changeMechLowHigh = useCallback( (changedData: MechStatNames[]) => {
+        setMechLowHigh(changedData)
+    },[])
+
+
+
 
     const gender = useMemo(() => { return (narativeStats.gender) }, [narativeStats.gender]);
     const origin = useMemo(() => { return (narativeStats.origin) }, [narativeStats.origin]);
     const age = useMemo(() => { return (appearanceStats.age) }, [appearanceStats.age]);
+    const mechStatLowHigh = useMemo(() => { return (mechLowHigh) }, [mechLowHigh]);
 
     // reset name every time origin changes
     useEffect(() => {
-        debugger;
         setNarativeStats((prev) => ({ ...prev, name: "" }))
     }, [narativeStats.origin])
 
@@ -63,9 +72,9 @@ export function Complex() {
 
             <WorldviewComplex />
 
-            <MechStatsComplex/>
+            <MechStatsComplex changeMechLowHigh={changeMechLowHigh} />
 
-            <FamilyNRelationshipComplex age={age} gender={gender} origin={origin} />
+            <FamilyNRelationshipComplex age={age} mechLowHigh={mechStatLowHigh} />
         </div>
     )
 }
