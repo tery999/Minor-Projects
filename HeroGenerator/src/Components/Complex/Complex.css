@@ -61,3 +61,8 @@
     gap: 15px;
     font-size: 18px;
 }
+
+.diceLogo {
+    width: 100px;
+    cursor: pointer;
+}

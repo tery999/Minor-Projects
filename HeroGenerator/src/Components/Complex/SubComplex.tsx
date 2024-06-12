@@ -1,4 +1,5 @@
 import React from "react";
+import dice from "../../../public/441965163_472462378601661_2030822002986090823_n.png"
 
 
 export interface prop {
@@ -37,7 +38,7 @@ export function SubComplexFunc(props: prop) {
     return (
         <>
         <div className="DivHolderStat">
-        <button onClick={() => combined()}>but</button>
+        <img className="diceLogo" src={dice} alt="" onClick={combined}/>
             <p>{name}: {value} </p>
 
         </div>
