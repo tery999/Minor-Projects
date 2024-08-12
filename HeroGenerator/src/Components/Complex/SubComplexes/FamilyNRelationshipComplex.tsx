@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { SubComplex } from "../SubComplex";
-import {  age, familyAndRelationships, origin } from "../../../Interfaces/QuickHero";
+import {  age, familyAndRelationships} from "../../../Interfaces/QuickHero";
 import { DiffAndAch, familyGenerator, familyReputationGenerator, foesGenerator, friendshipGenerator, relationshipStatusFunc, reputationGenerator, rumorGenerator, siblingsGenerator, surroundingGenerator, wealthGenerator } from "../../../functions/familyRelationshipsGenerator";
 
 export function FamilyNRelationshipFunc(props:any) {

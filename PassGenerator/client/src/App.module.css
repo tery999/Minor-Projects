@@ -1,0 +1,32 @@
+.holder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+    background-image: linear-gradient(to right top, #87fbff, #5be7ff, #3fd1ff, #4eb9ff, #739dfa);
+    height: 100vh;
+}
+
+.button {
+    background-color: rgb(233, 233, 233);
+    width: 200px;
+    height: 40px;
+    border-radius: 15px;
+    border: 2 px solid white;
+}
+
+.button.generate {
+    width: 300px;
+}
+
+.options {
+    display: flex;
+    gap: 20px;
+}
+
+.lengthOption {
+    display: flex;
+    gap: 20px;
+}
+
