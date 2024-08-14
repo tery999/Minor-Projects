@@ -1,31 +1,19 @@
 import { useState } from "react"
 import styles from "./App.module.css"
 import { letterGenerator } from "./functions/letterGenerator";
+import { usePassword } from "./functions/usePassword";
 
 function App() {
-  const [password, setPassword] = useState("");
+  // const [password, setPassword] = useState("");
+  
   const [upperCase, setUpperCase] = useState(false);
   const [numbers, setNumbers] = useState(false);
   const [passLength, setPassLength] = useState("Small");
+  const [generateClicked, setGenerateClicked] = useState(false);
+  //dont know if its better to return the value of the password, or the function itself, thus removing the 
+  //generateClicked state
+  const [password] = usePassword(upperCase, numbers, passLength,generateClicked);
 
-  const generatePasswordClickFunc = () => {
-    let generatedPassword = ""
-    if ( passLength === "Small") {
-      for ( let i = 0 ; i < 6 ; i++) {
-        generatedPassword+= letterGenerator();
-      }
-    } else if ( passLength==="Medium") {
-        for ( let i = 0 ; i < 12 ; i++) {
-          generatedPassword+= letterGenerator();
-        }
-    } else if ( passLength==="Big") {
-      for ( let i = 0 ; i < 20 ; i++) {
-        generatedPassword+= letterGenerator();
-      }
-  }
-
-    setPassword(generatedPassword);
-  }
   return (
     <div className={styles.holder}>
       <div className={styles.options}>
@@ -38,7 +26,7 @@ function App() {
         <button className={`${styles.button} ${passLength==="Big" ? styles.clicked : ""}`} onClick={()=>setPassLength("Big")}> Big</button>
       </div>
       <div>
-        <button onClick={generatePasswordClickFunc} className={`${styles.button} ${styles.generate}`}>GENERATE</button>
+        <button  className={`${styles.button} ${styles.generate}`} onClick={()=>setGenerateClicked(prev => !prev)}>GENERATE</button>
       </div>
       <div>
         password: {password} 
