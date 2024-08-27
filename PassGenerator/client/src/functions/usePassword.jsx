@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { letterGenerator } from "./letterGenerator";
 import { randomNumber } from "./randomNumber";
 
-export function usePassword(upperCase, numbers, passLength, generateClicked) {
+export function usePassword(upperCase, numbers, symbols, passLength, generateClicked) {
     const [password, setPassword] = useState("");
 
     useEffect(() => {
@@ -10,7 +10,7 @@ export function usePassword(upperCase, numbers, passLength, generateClicked) {
     }, [generateClicked])
 
     const generatePasswordClickFunc = () => {
-        debugger;
+        // debugger;
         let generatedPassword = ""
         if (passLength === "Small") {
             for (let i = 0; i < 6; i++) {
@@ -34,13 +34,15 @@ export function usePassword(upperCase, numbers, passLength, generateClicked) {
                 let randomIndex = randomNumber(generatedPassword.length);
                 let randomNumbToAdd = randomNumber(10);
                 if (randomIndex !== 0) {
-                    generatedPassword = generatedPassword.slice(0, randomIndex-1) + randomNumbToAdd + generatedPassword.slice(randomIndex);
+                    generatedPassword = generatedPassword.slice(0, randomIndex) + randomNumbToAdd + generatedPassword.slice(randomIndex+1);
                 } else {
                     generatedPassword = randomNumbToAdd + generatedPassword.slice(1);
                 }
 
                 addedCount++;
             }
+            console.log( "PASSWORD AFTER NUMBERS");
+            console.log(generatedPassword);
         }
 
         if (upperCase) {
@@ -51,13 +53,21 @@ export function usePassword(upperCase, numbers, passLength, generateClicked) {
                 let randomIndex = randomNumber(generatedPassword.length);
                 if (generatedPassword.charCodeAt(randomIndex) >= 97 && generatedPassword.charCodeAt(randomIndex) <= 122) {
                     if (randomIndex !== 0) {
-                        generatedPassword = generatedPassword.slice(0, randomIndex-1) + generatedPassword.charAt(randomIndex).toUpperCase() + generatedPassword.slice(randomIndex);
+                        generatedPassword = generatedPassword.slice(0, randomIndex) + generatedPassword.charAt(randomIndex).toUpperCase() + generatedPassword.slice(randomIndex+1);
                     } else {
                         generatedPassword = generatedPassword.charAt(randomIndex).toUpperCase() + generatedPassword.slice(1);
                     }
                     addedCount++;
                 }
             }
+        }
+
+        if ( symbols ) {
+            // debugger;
+            let allowedSpecials = ["@","#","$","%","^","&","*","(",")","!","?","+","-","_","/"];
+            let pickedSymbol = allowedSpecials[randomNumber(allowedSpecials.length)];
+            let halfPoint = Math.ceil( generatedPassword.length / 2 );
+            generatedPassword = generatedPassword.slice(0, halfPoint) + pickedSymbol + generatedPassword.slice(halfPoint);
         }
 
         setPassword(generatedPassword);
