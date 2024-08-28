@@ -62,12 +62,15 @@ export function usePassword(upperCase, numbers, symbols, passLength, generateCli
             }
         }
 
-        if ( symbols ) {
-            // debugger;
+        if ( symbols === true ) {
+            debugger;
             let allowedSpecials = ["@","#","$","%","^","&","*","(",")","!","?","+","-","_","/"];
             let pickedSymbol = allowedSpecials[randomNumber(allowedSpecials.length)];
             let halfPoint = Math.ceil( generatedPassword.length / 2 );
             generatedPassword = generatedPassword.slice(0, halfPoint) + pickedSymbol + generatedPassword.slice(halfPoint);
+        } else if (symbols === "simple") {
+            let halfPoint = Math.ceil( generatedPassword.length / 2 );
+            generatedPassword = generatedPassword.slice(0, halfPoint) + "@" + generatedPassword.slice(halfPoint);
         }
 
         setPassword(generatedPassword);
