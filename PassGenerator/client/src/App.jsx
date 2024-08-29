@@ -2,6 +2,7 @@ import { useState } from "react"
 import styles from "./App.module.css"
 import { letterGenerator } from "./functions/letterGenerator";
 import { usePassword } from "./functions/usePassword";
+import { passwordStrength } from 'check-password-strength'
 
 function App() {
   // const [password, setPassword] = useState("");
@@ -25,7 +26,7 @@ function App() {
     }
   }
 
-  console.log(generateClicked);
+  const passStrngth = passwordStrength(password).value;
 
 
   return (
@@ -50,6 +51,9 @@ function App() {
       </div>
       <div>
         password: {password}
+      </div>
+      <div>
+        Strength: {passStrngth}
       </div>
     </div>
   )
