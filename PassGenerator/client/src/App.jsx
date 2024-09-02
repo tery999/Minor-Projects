@@ -1,7 +1,8 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styles from "./App.module.css"
 import { letterGenerator } from "./functions/letterGenerator";
 import { usePassword } from "./functions/usePassword";
+import { passwordStrengthFunc } from "./functions/passwordStrenghtFunc";
 
 function App() {
   // const [password, setPassword] = useState("");
@@ -25,6 +26,13 @@ function App() {
     }
   }
 
+  
+  // useEffect ( ()=> {
+  //   let passNumber = passwordStrengthFunc(password);
+  //   setPassStrength(passNumber);
+  // },[password])
+  const passNumber = passwordStrengthFunc(password);
+  console.log("CHECK RENDERING")
 
   return (
     <div className={styles.holder}>
@@ -50,7 +58,7 @@ function App() {
         password: {password}
       </div>
       <div>
-        Strength: 
+        Strength: {passNumber}
       </div>
     </div>
   )
