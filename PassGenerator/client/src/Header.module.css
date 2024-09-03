@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
+
+.header {
+    display: flex;
+    justify-content: center;
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 40px;
+    background-image: radial-gradient(circle, #4a00d1, #005cf9, #008aff, #00b1ff, #00d3ff);
+    border-bottom: 2px solid snow;
+    height: 50px;
+}
+
+.header > a {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
