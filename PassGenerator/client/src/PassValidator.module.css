@@ -1,0 +1,21 @@
+.DynHolder {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding-top: 100px;
+    flex-direction: column;
+    gap: 15px;
+    background-image: linear-gradient(to right top, #87fbff, #5be7ff, #3fd1ff, #4eb9ff, #739dfa);
+    height: 80vh;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    width: 300px;
+    height: 50px;
+}

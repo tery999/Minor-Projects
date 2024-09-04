@@ -11,7 +11,7 @@ export function passwordStrengthFunc(givenPass) {
         totalPoints += 1;
     } else if ( passLength <= 13 ) {
         totalPoints += 2;
-    } else if ( passLength > 14 ) {
+    } else if ( passLength >= 14 ) {
         totalPoints += 4;
     }
 

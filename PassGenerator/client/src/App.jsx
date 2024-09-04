@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PassGenerator from "./PassGenerator";
 import { Home } from "./Home";
 import { Header } from "./Header";
+import { PassValidator } from "./PassValidator";
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Generate" element={<PassGenerator />} />
+        <Route path="/Check" element={<PassValidator />} />
       </Routes>
     </BrowserRouter>
 

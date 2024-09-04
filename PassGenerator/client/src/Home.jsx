@@ -6,6 +6,8 @@ export function Home () {
     return (
         <div className={styles.holder}>
       <Link to="Generate"> Generate Password</Link>
+      <Link to="Check"> Check Password</Link>
+
     </div>
     )
 
