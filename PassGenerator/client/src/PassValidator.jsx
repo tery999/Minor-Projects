@@ -4,7 +4,7 @@ import { passwordStrengthFunc } from "./functions/passwordStrenghtFunc";
 
 export function PassValidator() {
     const [password, setPassword] = useState("");
-    const [ strength, setStrength] = useState(0);
+    const [strength, setStrength] = useState(0);
 
     const checkPassStrength = (e) => {
         const currentStrength = passwordStrengthFunc(e.target.value);
@@ -12,8 +12,10 @@ export function PassValidator() {
         setPassword(e.target.value);
 
     }
+
+    //{`${styles.button} ${upperCase ? styles.clicked : ""}`}
     return (
-        <div className={styles.DynHolder}>
+        <div className={`${styles.DynHolder} ${styles.something}`}>
             <form >
                 <label>Input password:
                     <input type="text" value={password} onChange={checkPassStrength} />
