@@ -13,6 +13,7 @@ label {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 10px;
 }
 
 input {
@@ -21,8 +22,33 @@ input {
     text-align: center;
     font-size: 20px;
     font-weight: bold;
+    border: 5px solid rgba(255, 0, 0, 0);
+}
+
+.weak input {
+    border: 5px solid rgb(255, 0, 0);
+}
+
+.medium input {
+    border: 5px solid rgb(255, 240, 30);
+}
+
+.high input {
+    border: 5px solid rgb(13, 255, 0);
 }
 
 input:focus {
     outline: none;
+}
+
+.weak {
+    background-image: linear-gradient(to right top, #ff0000, #ff5100, #ff7800, #ff9700, #ffb400);
+}
+
+.medium {
+    background-image: linear-gradient(to right top, #fff200, #d7f200, #acf100, #78ef22, #d9eb12);
+}
+
+.high {
+    background-image: linear-gradient(to right top, #6fff00, #24f12c, #11e23e, #00d449, #00c551);
 }

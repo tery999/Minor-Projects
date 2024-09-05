@@ -11,8 +11,10 @@ export function passwordStrengthFunc(givenPass) {
         totalPoints += 1;
     } else if ( passLength <= 13 ) {
         totalPoints += 2;
-    } else if ( passLength >= 14 ) {
+    } else if ( passLength >= 14 && passLength < 20) {
         totalPoints += 4;
+    } else if ( passLength >= 20 ) {
+        totalPoints += 6;
     }
 
     //symbol matching
