@@ -5,8 +5,8 @@ import PassGenerator from "./PassGenerator"
 export function Home () {
     return (
         <div className={styles.holder}>
-      <Link to="Generate"> Generate Password</Link>
-      <Link to="Check"> Check Password</Link>
+      <Link to="Generate"> <div className={styles.linkBox}> Generate Password </div> </Link>
+      <Link to="Check"> <div className={styles.linkBox}> Check Password </div> </Link>
 
     </div>
     )

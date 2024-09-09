@@ -1,11 +1,40 @@
 .holder {
+    padding-top: 200px;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     flex-direction: column;
     gap: 15px;
     background-image: linear-gradient(to right top, #87fbff, #5be7ff, #3fd1ff, #4eb9ff, #739dfa);
-    height: 100vh;
+    height: 70vh;
+}
+
+.holder > a {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+
+.linkBox {
+    width: 500px;
+    border: 2px solid white;
+    border-radius: 25px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to right top, #b3d5f4, #aacdf4, #a2c5f3, #9cbcf2, #98b3f0);
+    -webkit-box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.75);
+    transition: 0.5s;
+}
+
+.linkBox:hover {
+    -webkit-box-shadow: inset 0px 0px 2px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: inset 0px 0px 2px 0px rgba(0,0,0,0.75);
+box-shadow: inset 0px 0px 2px 0px rgba(0,0,0,0.75);
+transition: 0.5s;
 }
 
 .button {
